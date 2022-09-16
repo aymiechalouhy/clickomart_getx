@@ -109,11 +109,10 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
-                            debugPrint(offersController
-                                .offers!.response![index].name
-                                .toString());
+                            debugPrint(offersController.offers!.response![index].name.toString());
                             return Column(
                               children: [
+                                Text(offersController.offers!.response![index].name.toString()),
                                 SizedBox(
                                   height: 460,
                                   child: GridView.builder(
@@ -129,8 +128,7 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                       String name = '';
                                       try {
                                         name = offersController.offers!.response![index].items!.elementAt(indexOffers).name.toString();
-                                      } catch (e) {
-                                        name = '';
+                                      } catch (e) {name = '';
                                       }
                                       return Column(
                                         children: [
@@ -147,7 +145,7 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                       );
                                     }),
                                     itemCount: offersController
-                                        .offers?.response?[index].items!.length,
+                                        .offers?.response?[index].items?.length,
                                   ),
                                 )
                               ],

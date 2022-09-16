@@ -17,7 +17,6 @@ class OffersController extends GetxController {
           headers: {
             HttpHeaders.authorizationHeader: '22D196EC5C6F345377A67AD9F4BDDF',
           });
-      // debugPrint(response.body);
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
         offers = Offers.fromJson(result);
