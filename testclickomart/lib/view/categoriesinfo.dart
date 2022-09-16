@@ -100,40 +100,53 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                           fontWeight: FontWeight.bold)),
                 ),
               ),
-
-             Obx(() => offersController.isLoading.value
-                    ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: GridView.builder(
-                            physics: const ScrollPhysics(),
-                            shrinkWrap: true,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3,
-                                    crossAxisSpacing: 5,
-                                    mainAxisExtent: 150),
-                            itemBuilder: ((context, i) {
-                              String name = '';
-                              try {
-                                name = offersController.offers!.response![i].name.toString();
-                              } catch (e) {
-                                name = '';
-                              }
-                              return Column(
-                                children: [
-                                  Text(name, style: const TextStyle(fontSize: 10),
-                                  ),
-                                ],
-                              );
-                            }),
-                            itemCount: offersController.offers!.response!.length),
-                      ),
+              SizedBox(
+                
+                height: 300,
+                child: Obx(
+                  () =>  offersController.isLoading.value
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: ((context, index) {
+                                  return Expanded(
+                                    child: Column(
+                                      children: [
+                                        GridView.builder(
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.horizontal,
+                                            gridDelegate:
+                                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                                    crossAxisCount: 1,
+                                                    mainAxisExtent: 115,
+                                                    mainAxisSpacing: 10),
+                                            itemBuilder: (context, indexOffers) {
+                                              String name = '';
+                                              try {
+                                                name = offersController.offers!
+                                                    .response![index].items!
+                                                    .elementAt(indexOffers)
+                                                    .name
+                                                    .toString();
+                                              } catch (e) {
+                                                name = '';
+                                              }
+                                              return Text(name);
+                                            }),
+                                      ],
+                                    ),
+                                  );
+                                }),
+                                itemCount:offersController.offers?.response?.length),
+                          ),
+                ),
               ),
-
-
+              
             ],
           ),
         ));
