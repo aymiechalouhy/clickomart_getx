@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-import 'package:testclickomart/model/offersmodel.dart';
+import 'package:testclickomart/model/offersmodel.dart' as offersModel;
 
 class OffersController extends GetxController {
-  Offers? offers;
+  Iterable<offersModel.Response>? offers;
   var isLoading = false.obs;
 
   getOffersFromApi() async {
@@ -19,7 +19,10 @@ class OffersController extends GetxController {
           });
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
-        offers = Offers.fromJson(result);
+        offers = offersModel.Offers.fromJson(result)
+            .response!
+            .where((element) => element.slug == "weekly-offers");
+        debugPrint(offers.toString());
       } else {}
     } catch (e) {
       debugPrint("Error while getting Data $e");

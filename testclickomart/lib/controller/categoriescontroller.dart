@@ -8,7 +8,7 @@ import 'package:testclickomart/model/categoriesmodel.dart';
 class CategoriesController extends GetxController {
   Categories? cat;
   var isDataLoading = false.obs;
-
+ 
   getCategoriesFromApi() async {
     try {
       isDataLoading(true);

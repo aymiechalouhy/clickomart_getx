@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:testclickomart/controller/categoriescontroller.dart';
 import 'package:testclickomart/controller/offerscontroller.dart';
+import 'package:testclickomart/view/categorydetails.dart';
 
 class CategoriesInfo extends StatefulWidget {
   const CategoriesInfo({super.key});
@@ -62,25 +63,34 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                               } catch (e) {
                                 name = '';
                               }
-                              return Column(
-                                children: [
-                                  Image.network(
-                                    "${logo.replaceAll(RegExp(r'clickomart-s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3\.eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r's3\.eu-central-1\.amazonaws\.com\/clickomart'), 'clickomart.imgix.net')}?w=200&auto=enhance,format",
-                                    height: 100,
-                                    width: 100,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return Image.asset(
-                                        "assets/images/load.png",
-                                        height: 100,
-                                        width: 100,
-                                      );
-                                    },
-                                  ),
-                                  Text(
-                                    name,
-                                    style: const TextStyle(fontSize: 10),
-                                  ),
-                                ],
+                              return InkWell(
+                                onTap: (() =>
+                                    Get.to(const CategoryDetails(), arguments: {
+                                      "name":
+                                          " ${categoriesController.cat!.response![i].name.toString()} ",
+                                      "subcategories": "12345"
+                                    })),
+                                child: Column(
+                                  children: [
+                                    Image.network(
+                                      "${logo.replaceAll(RegExp(r'clickomart-s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3\.eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r's3\.eu-central-1\.amazonaws\.com\/clickomart'), 'clickomart.imgix.net')}?w=200&auto=enhance,format",
+                                      height: 100,
+                                      width: 100,
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                        return Image.asset(
+                                          "assets/images/load.png",
+                                          height: 100,
+                                          width: 100,
+                                        );
+                                      },
+                                    ),
+                                    Text(
+                                      name,
+                                      style: const TextStyle(fontSize: 10),
+                                    ),
+                                  ],
+                                ),
                               );
                             }),
                             itemCount:
@@ -109,10 +119,16 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
-                            debugPrint(offersController.offers!.response![index].name.toString());
+                            debugPrint(offersController.offers!
+                                .elementAt(index)
+                                .name
+                                .toString());
                             return Column(
                               children: [
-                                Text(offersController.offers!.response![index].name.toString()),
+                                Text(offersController.offers!
+                                    .elementAt(index)
+                                    .name
+                                    .toString()),
                                 SizedBox(
                                   height: 460,
                                   child: GridView.builder(
@@ -124,11 +140,22 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                             mainAxisExtent: 115,
                                             mainAxisSpacing: 10),
                                     itemBuilder: ((context, indexOffers) {
-                                     debugPrint(offersController.offers!.response![index].items!.elementAt(indexOffers).name.toString());
+                                      debugPrint(offersController.offers!
+                                          .elementAt(index)
+                                          .items!
+                                          .elementAt(indexOffers)
+                                          .name
+                                          .toString());
                                       String name = '';
                                       try {
-                                        name = offersController.offers!.response![index].items!.elementAt(indexOffers).name.toString();
-                                      } catch (e) {name = '';
+                                        name = offersController.offers!
+                                            .elementAt(index)
+                                            .items!
+                                            .elementAt(indexOffers)
+                                            .name
+                                            .toString();
+                                      } catch (e) {
+                                        name = '';
                                       }
                                       return Column(
                                         children: [
@@ -144,14 +171,16 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                         ],
                                       );
                                     }),
-                                    itemCount: offersController
-                                        .offers?.response?[index].items?.length,
+                                    itemCount: offersController.offers
+                                        ?.elementAt(index)
+                                        .items
+                                        ?.length,
                                   ),
                                 )
                               ],
                             );
                           },
-                          itemCount: offersController.offers?.response?.length),
+                          itemCount: offersController.offers?.length),
                 ),
               ),
             ],
