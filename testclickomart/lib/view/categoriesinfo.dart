@@ -25,8 +25,7 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Categories"),
+        appBar: AppBar(title: const Text("Categories"),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -51,29 +50,33 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                               String name = '';
                               try {
                                 logo = categoriesController
-                                    .cat!.response![i].logo
-                                    .toString();
+                                    .cat!.elementAt(i).logo.toString()
+                                    ;
                               } catch (e) {
                                 logo = '';
                               }
                               try {
-                                name = categoriesController
-                                    .cat!.response![i].name
-                                    .toString();
+                               name = categoriesController.cat!.elementAt(i).
+                                     name.toString();
                               } catch (e) {
                                 name = '';
                               }
                               return InkWell(
                                 onTap: (() =>
                                     Get.to(const CategoryDetails(), arguments: {
-                                      "name":
-                                          " ${categoriesController.cat!.response![i].name.toString()} ",
-                                      "subcategories": "12345"
+                                      "id":" ${categoriesController.cat!.elementAt(i).sId} ",          
                                     })),
                                 child: Column(
                                   children: [
                                     Image.network(
-                                      "${logo.replaceAll(RegExp(r'clickomart-s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3\.eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r's3\.eu-central-1\.amazonaws\.com\/clickomart'), 'clickomart.imgix.net')}?w=200&auto=enhance,format",
+                                      "${logo.replaceAll(RegExp(r'clickomart-s3-eu-central-1\.amazonaws\.com'),
+                                        'clickomart.imgix.net').
+                                        replaceAll(RegExp(r'clickomart\.s3\.eu-central-1\.amazonaws\.com'),
+                                         'clickomart.imgix.net')
+                                         .replaceAll(RegExp(r'clickomart\.s3-eu-central-1\.amazonaws\.com'), 
+                                         'clickomart.imgix.net').
+                                         replaceAll(RegExp(r's3\.eu-central-1\.amazonaws\.com\/clickomart'),
+                                          'clickomart.imgix.net')}?w=200&auto=enhance,format",
                                       height: 100,
                                       width: 100,
                                       errorBuilder:
@@ -88,14 +91,12 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                     Text(
                                       name,
                                       style: const TextStyle(fontSize: 10),
-                                    ),
+                                    ),                  
                                   ],
                                 ),
                               );
                             }),
-                            itemCount:
-                                categoriesController.cat!.response!.length),
-                      ),
+                            itemCount:categoriesController.cat!.length)),
               ),
               Container(
                 height: 60,
@@ -110,79 +111,67 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                           fontWeight: FontWeight.bold)),
                 ),
               ),
-              SizedBox(
-                height: 460,
-                child: Obx(
-                  () => offersController.isLoading.value
-                      ? const CircularProgressIndicator()
-                      : ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            debugPrint(offersController.offers!
-                                .elementAt(index)
-                                .name
-                                .toString());
-                            return Column(
-                              children: [
-                                Text(offersController.offers!
-                                    .elementAt(index)
-                                    .name
-                                    .toString()),
-                                SizedBox(
-                                  height: 460,
-                                  child: GridView.builder(
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.horizontal,
-                                    gridDelegate:
-                                        const SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount: 1,
-                                            mainAxisExtent: 115,
-                                            mainAxisSpacing: 10),
-                                    itemBuilder: ((context, indexOffers) {
-                                      debugPrint(offersController.offers!
-                                          .elementAt(index)
-                                          .items!
-                                          .elementAt(indexOffers)
-                                          .name
-                                          .toString());
-                                      String name = '';
-                                      try {
-                                        name = offersController.offers!
-                                            .elementAt(index)
-                                            .items!
-                                            .elementAt(indexOffers)
-                                            .name
-                                            .toString();
-                                      } catch (e) {
-                                        name = '';
-                                      }
-                                      return Column(
-                                        children: [
-                                          SizedBox(
-                                            height: 100,
-                                            width: 123,
-                                            child: Column(
-                                              children: [
-                                                Text(name),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    }),
-                                    itemCount: offersController.offers
-                                        ?.elementAt(index)
-                                        .items
-                                        ?.length,
-                                  ),
-                                )
-                              ],
-                            );
-                          },
-                          itemCount: offersController.offers?.length),
-                ),
-              ),
+              // SizedBox(
+              //   height: 460,
+              //   child: Obx(
+              //     () => offersController.isLoading.value
+              //         ? const SizedBox(
+              //             height: 70, child: CircularProgressIndicator())
+              //         : ListView.builder(
+              //             shrinkWrap: true,
+              //             physics: const NeverScrollableScrollPhysics(),
+              //             itemBuilder: (context, index) {
+              //               return Column(
+              //                 children: [
+              //                   // Text(offersController.offers?.elementAt(index).name.toString()),
+              //                   SizedBox(
+              //                     height: 460,
+              //                     child: GridView.builder(
+              //                       shrinkWrap: true,
+              //                       scrollDirection: Axis.horizontal,
+              //                       gridDelegate:
+              //                           const SliverGridDelegateWithFixedCrossAxisCount(
+              //                               crossAxisCount: 1,
+              //                               mainAxisExtent: 115,
+              //                               mainAxisSpacing: 10),
+              //                       itemBuilder: ((context, indexOffers) {      
+              //                         String name = '';
+              //                         try {
+              //                           name = offersController.offers!
+              //                               .elementAt(index)
+              //                               .items!
+              //                               .elementAt(indexOffers)
+              //                               .name
+              //                               .toString();
+              //                         } catch (e) {
+              //                           name = '';
+              //                         }
+              //                         return Column(
+              //                           children: [
+              //                             SizedBox(
+              //                               height: 100,
+              //                               width: 123,
+              //                               child: Column(
+              //                                 children: [
+              //                                   Text(name),
+              //                                 ],
+              //                               ),
+              //                             ),
+              //                           ],
+              //                         );
+              //                       }),
+              //                       itemCount: offersController.offers
+              //                           ?.elementAt(index)
+              //                           .items
+              //                           ?.length,
+              //                     ),
+              //                   )
+              //                 ],
+              //               );
+              //             },
+              //             itemCount: offersController.offers?.length),
+              //   ),
+              // ),
             ],
           ),
         ));
