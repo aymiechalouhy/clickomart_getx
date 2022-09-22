@@ -73,7 +73,12 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                             child: Column(
                               children: [
                                 Image.network(
-                                  "${logo.replaceAll(RegExp(r'clickomart-s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3\.eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r's3\.eu-central-1\.amazonaws\.com\/clickomart'), 'clickomart.imgix.net')}?w=200&auto=enhance,format",
+                                  "${logo
+                                  .replaceAll(RegExp(r'clickomart-s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net')
+                                  .replaceAll(RegExp(r'clickomart\.s3\.eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net')
+                                  .replaceAll(RegExp(r'clickomart\.s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net')
+                                  .replaceAll(RegExp(r's3\.eu-central-1\.amazonaws\.com\/clickomart'), 'clickomart.imgix.net')
+                                  }?w=200&auto=enhance,format",
                                   height: 100,
                                   width: 100,
                                   errorBuilder: (context, error, stackTrace) {
@@ -111,26 +116,39 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
             () => offersController.isLoading.value
                 ? const CircularProgressIndicator()
                 : SizedBox(
-                    height: 100,
+                    height: 400,
                     width: double.infinity,
                     child: ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
-                        debugPrint(offersController.offers?.elementAt(index).name.toString());
+                        debugPrint(offersController.offers
+                            ?.elementAt(index)
+                            .name
+                            .toString());
                         return Column(
                           children: [
                             SizedBox(
-                              height: 100,
+                              height: 400,
                               width: double.infinity,
                               child: Padding(
                                 padding:
                                     const EdgeInsets.only(left: 10, right: 10),
-                                child: ListView.builder(
+                                child: GridView.builder(
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 1,
+                                            mainAxisExtent: 115, // l3ared
+                                            mainAxisSpacing: 10),
                                     shrinkWrap: true,
                                     scrollDirection: Axis.horizontal,
                                     itemBuilder: ((context, indexOffers) {
                                       String name = '';
+                                      String discount = '';
+                                      String image = '';
+                                      String description = '';
+                                      String price = '';
+                                      String discountPrice = '';
                                       try {
                                         name = offersController.offers!
                                             .elementAt(index)
@@ -141,6 +159,62 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                       } catch (e) {
                                         name = '';
                                       }
+
+                                      try {
+                                        discount = offersController.offers!
+                                            .elementAt(index)
+                                            .items!
+                                            .elementAt(indexOffers)
+                                            .discount
+                                            .toString();
+                                      } catch (e) {
+                                        discount = '';
+                                      }
+
+                                      try {
+                                        image = offersController.offers!
+                                            .elementAt(index)
+                                            .items!
+                                            .elementAt(indexOffers)
+                                            .image
+                                            .toString();
+                                      } catch (e) {
+                                        image = '';
+                                      }
+
+                                      try {
+                                        description = offersController.offers!
+                                            .elementAt(index)
+                                            .items!
+                                            .elementAt(indexOffers)
+                                            .description
+                                            .toString();
+                                      } catch (e) {
+                                        description = '';
+                                      }
+
+                                      try {
+                                        price = offersController.offers!
+                                            .elementAt(index)
+                                            .items!
+                                            .elementAt(indexOffers)
+                                            .price
+                                            .toString();
+                                      } catch (e) {
+                                        price = '';
+                                      }
+
+                                       try {
+                                        discountPrice = offersController.offers!
+                                            .elementAt(index)
+                                            .items!
+                                            .elementAt(indexOffers)
+                                            .discountPrice
+                                            .toString();
+                                      } catch (e) {
+                                        discountPrice = '';
+                                      }
+
                                       debugPrint(name.toString());
                                       return Column(
                                         children: [
@@ -148,16 +222,27 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                             padding:
                                                 const EdgeInsets.only(left: 2),
                                             child: SizedBox(
-                                              height: 100,
+                                              height: 200,
                                               width: 123,
                                               child: Column(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 10),
-                                                    child: Text(name),
+                                                children: [                                               
+                                                  Text(discount),
+                                                  Image.network(  "${image
+                                  .replaceAll(RegExp(r'clickomart-s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net')
+                                  .replaceAll(RegExp(r'clickomart\.s3\.eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net')
+                                  .replaceAll(RegExp(r'clickomart\.s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net')
+                                  .replaceAll(RegExp(r's3\.eu-central-1\.amazonaws\.com\/clickomart'), 'clickomart.imgix.net')
+                                  }?w=200&auto=enhance,format",
+                                                    height: 64,
+                                                    width: 64,
                                                   ),
+                                                  Text(name, maxLines: 1),
+                                                  Text(description.replaceAll(
+                                                      RegExp(
+                                                          r'<[^>]*>|&[^;]+;'),
+                                                      ''),),
+                                                  Text(price),
+                                                  Text(discountPrice),
                                                 ],
                                               ),
                                             ),
@@ -183,57 +268,3 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
     );
   }
 }
-// Obx(() => offersController.isLoading.value
-//         ? const  CircularProgressIndicator()
-//         : Expanded(
-//           child: ListView.builder(
-//               shrinkWrap: true,
-//               physics: const NeverScrollableScrollPhysics(),
-//               itemBuilder: (context, index) {
-//                 return Column(
-//                   children: [
-//                     // Text(offersController.offers?.elementAt(index).name.toString()),
-//                     SizedBox(
-//                       height: 460,
-//                       child: GridView.builder(
-//                         shrinkWrap: true,
-//                         gridDelegate:
-//                             const SliverGridDelegateWithFixedCrossAxisCount(
-//                                 crossAxisCount: 1,
-//                                 mainAxisExtent: 115,
-//                                 mainAxisSpacing: 10),
-//                         itemBuilder: ((context, indexOffers) {
-//                           String name = '';
-//                           try {
-//                             name = offersController.offers!
-//                                 .elementAt(index)
-//                                 .items!
-//                                 .elementAt(indexOffers)
-//                                 .name
-//                                 .toString();
-//                           } catch (e) {
-//                             name = '';
-//                           }
-//                           return Column(
-//                             children: [
-//                               SizedBox(
-//                                 height: 100,
-//                                 width: 123,
-//                                 child: Column(
-//                                   children: [
-//                                     Text(name),
-//                                   ],
-//                                 ),
-//                               ),
-//                             ],
-//                           );
-//                         }),
-//                         itemCount: offersController.offers?.elementAt(index).items?.length,
-//                       ),
-//                     )
-//                   ],
-//                 );
-//               },
-//               itemCount: offersController.offers?.length),
-//         ),
-//   ),

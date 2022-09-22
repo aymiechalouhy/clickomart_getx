@@ -112,32 +112,32 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                             itemCount: categoriesController.cat!.length),
                       ),
                     )),
-                       Column(
-          children: [
-
-        Text("${controller.id}"),
-        const Text("data"),
-        ListView.builder(
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  Text(categoriesController.cat!
-                      .elementAt(selectedCategoryIndex)
-                      .subcategories!
-                      .elementAt(index)
-                      .name
-                      .toString()),
-                ],
-              );
-            },
-          itemCount: categoriesController.cat!.elementAt(selectedCategoryIndex).subcategories!.length
+            Column(
+              children: [
+                Text("${controller.id}"),
+                const Text("data"),
+                ListView.builder(
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        children: [
+                          Text(categoriesController.cat!
+                              .elementAt(selectedCategoryIndex)
+                              .subcategories!
+                              .elementAt(index)
+                              .name
+                              .toString()),
+                        ],
+                      );
+                    },
+                    itemCount: categoriesController.cat!
+                        .elementAt(selectedCategoryIndex)
+                        .subcategories!
+                        .length),
+              ],
+            ),
+          ],
         ),
-        ],
-        ),
-          ],       
-        ),
-     
       ),
     );
   }
