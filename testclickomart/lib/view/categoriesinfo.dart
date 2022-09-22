@@ -64,7 +64,7 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                               return InkWell(
                                 onTap: (() =>
                                     Get.to(const CategoryDetails(), arguments: {
-                                      "id":" ${categoriesController.cat!.elementAt(i).sId} ",          
+                                      "id":"${categoriesController.cat!.elementAt(i).sId}",          
                                     })),
                                 child: Column(
                                   children: [
@@ -111,67 +111,68 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                           fontWeight: FontWeight.bold)),
                 ),
               ),
-              // SizedBox(
-              //   height: 460,
-              //   child: Obx(
-              //     () => offersController.isLoading.value
-              //         ? const SizedBox(
-              //             height: 70, child: CircularProgressIndicator())
-              //         : ListView.builder(
-              //             shrinkWrap: true,
-              //             physics: const NeverScrollableScrollPhysics(),
-              //             itemBuilder: (context, index) {
-              //               return Column(
-              //                 children: [
-              //                   // Text(offersController.offers?.elementAt(index).name.toString()),
-              //                   SizedBox(
-              //                     height: 460,
-              //                     child: GridView.builder(
-              //                       shrinkWrap: true,
-              //                       scrollDirection: Axis.horizontal,
-              //                       gridDelegate:
-              //                           const SliverGridDelegateWithFixedCrossAxisCount(
-              //                               crossAxisCount: 1,
-              //                               mainAxisExtent: 115,
-              //                               mainAxisSpacing: 10),
-              //                       itemBuilder: ((context, indexOffers) {      
-              //                         String name = '';
-              //                         try {
-              //                           name = offersController.offers!
-              //                               .elementAt(index)
-              //                               .items!
-              //                               .elementAt(indexOffers)
-              //                               .name
-              //                               .toString();
-              //                         } catch (e) {
-              //                           name = '';
-              //                         }
-              //                         return Column(
-              //                           children: [
-              //                             SizedBox(
-              //                               height: 100,
-              //                               width: 123,
-              //                               child: Column(
-              //                                 children: [
-              //                                   Text(name),
-              //                                 ],
-              //                               ),
-              //                             ),
-              //                           ],
-              //                         );
-              //                       }),
-              //                       itemCount: offersController.offers
-              //                           ?.elementAt(index)
-              //                           .items
-              //                           ?.length,
-              //                     ),
-              //                   )
-              //                 ],
-              //               );
-              //             },
-              //             itemCount: offersController.offers?.length),
-              //   ),
-              // ),
+              SizedBox(
+                height: 100,
+                child: Obx(
+                  () => offersController.isLoading.value
+                      ? const  CircularProgressIndicator()
+                      : Expanded(
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return Column(
+                                children: [
+                                  // Text(offersController.offers?.elementAt(index).name.toString()),
+                                  SizedBox(
+                                    height: 460,
+                                    child: GridView.builder(
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.horizontal,
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 1,
+                                              mainAxisExtent: 115,
+                                              mainAxisSpacing: 10),
+                                      itemBuilder: ((context, indexOffers) {      
+                                        String name = '';
+                                        try {
+                                          name = offersController.offers!
+                                              .elementAt(index)
+                                              .items!
+                                              .elementAt(indexOffers)
+                                              .name
+                                              .toString();
+                                        } catch (e) {
+                                          name = '';
+                                        }
+                                        return Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 100,
+                                              width: 123,
+                                              child: Column(
+                                                children: [
+                                                  Text(name),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      }),
+                                      itemCount: offersController.offers
+                                          ?.elementAt(index)
+                                          .items
+                                          ?.length,
+                                    ),
+                                  )
+                                ],
+                              );
+                            },
+                            itemCount: offersController.offers?.length),
+                      ),
+                ),
+              ),
             ],
           ),
         ));

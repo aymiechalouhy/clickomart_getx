@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:testclickomart/model/categoriesmodel.dart';
 import 'package:testclickomart/controller/argumentscontroller.dart';
 import 'package:testclickomart/controller/categoriescontroller.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -15,7 +14,6 @@ class CategoryDetails extends StatefulWidget {
 class _CategoryDetailsState extends State<CategoryDetails> {
   int selectedCategoryIndex = 0;
   CategoriesController categoriesController = Get.put(CategoriesController());
-  Iterable futureCategories = const Iterable.empty();
 
   @override
   void initState() {
@@ -26,23 +24,18 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   Widget build(BuildContext context) {
     ArgumentController controller = Get.put(ArgumentController());
-
-    // if (futureCategories.isEmpty) {
-    //   ().then((subcategories) {
-    //     setState(() {
-    //       futureCategories = subcategories;
-    //       selectedCategoryIndex = subcategories
-    //           .toList()
-    //           .indexWhere((element) => element.id == controller.id);
-    //     });
-    //   });
-    // }
-
-    debugPrint(controller.id);
-    // selectedCategoryIndex = categoriesController.cat!.toList().indexWhere
-    //((element) => element.sId == controller.id);
+    debugPrint(controller.id?.trim());
+    debugPrint(categoriesController.cat!.toList().length.toString());
+    for (var element in categoriesController.cat!.toList()) {
+      debugPrint(element.sId);
+      debugPrint(controller.id?.trim());
+      debugPrint((element.sId == controller.id?.trim()).toString());
+    }
+    selectedCategoryIndex = categoriesController.cat!
+        .toList()
+        .indexWhere((element) => element.sId == controller.id?.trim());
     debugPrint("here_________________________________________");
-    // debugPrint(selectedCategoryIndex.toString());
+    debugPrint(selectedCategoryIndex.toString());
     return Scaffold(
       appBar: AppBar(title: const Text("Category Details")),
       body: SingleChildScrollView(
@@ -82,67 +75,69 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                 name = '';
                               }
                               return Column(
-                                  children: [
-                                    Image.network(
-                                      "${logo.replaceAll(RegExp(r'clickomart-s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3\.eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r's3\.eu-central-1\.amazonaws\.com\/clickomart'), 'clickomart.imgix.net')}?w=200&auto=enhance,format",
-                                      height: 100,
-                                      width: 100,
-                                      errorBuilder:
-                                          (context, error, stackTrace) {
-                                        return Image.asset(
-                                          "assets/images/load.png",
-                                          height: 100,
-                                          width: 100,
-                                        );
-                                      },
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: InkWell(
-                                        onTap: (() {
-                                          setState(() {
-                                            selectedCategoryIndex == i;
-                                          });
-                                        }),
-                                        child: Text(
-                                          name,
-                                          style:  TextStyle(
-                                            fontSize:10,
-                                            color: isSelected? Colors.blue : Colors.black ),
-                                        ),
+                                children: [
+                                  Image.network(
+                                    "${logo.replaceAll(RegExp(r'clickomart-s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3\.eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r's3\.eu-central-1\.amazonaws\.com\/clickomart'), 'clickomart.imgix.net')}?w=200&auto=enhance,format",
+                                    height: 100,
+                                    width: 100,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Image.asset(
+                                        "assets/images/load.png",
+                                        height: 100,
+                                        width: 100,
+                                      );
+                                    },
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: InkWell(
+                                      onTap: (() {
+                                        setState(() {
+                                          selectedCategoryIndex == i;
+                                        });
+                                      }),
+                                      child: Text(
+                                        name,
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            color: isSelected
+                                                ? Colors.blue
+                                                : Colors.black),
                                       ),
                                     ),
-                                  ],
-                                );
+                                  ),
+                                ],
+                              );
                             }),
                             itemCount: categoriesController.cat!.length),
                       ),
                     )),
-          ],
-        ),
-        // Column(
-        //   children: [
+                       Column(
+          children: [
 
-        // Text("${controller.id}"),
-        // const Text("data"),
-        // ListView.builder(
-        //     shrinkWrap: true,
-        //     itemBuilder: (context, index) {
-        //       return Column(
-        //         children: [
-        //           Text(categoriesController.cat!
-        //               .elementAt(selectedCategoryIndex)
-        //               .subcategories!
-        //               .elementAt(index)
-        //               .name
-        //               .toString()),
-        //         ],
-        //       );
-        //     },
-        //   itemCount: futureCategoriess.length
-        // ),
-        // ],
-        // ),
+        Text("${controller.id}"),
+        const Text("data"),
+        ListView.builder(
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  Text(categoriesController.cat!
+                      .elementAt(selectedCategoryIndex)
+                      .subcategories!
+                      .elementAt(index)
+                      .name
+                      .toString()),
+                ],
+              );
+            },
+          itemCount: categoriesController.cat!.elementAt(selectedCategoryIndex).subcategories!.length
+        ),
+        ],
+        ),
+          ],       
+        ),
+     
       ),
     );
   }

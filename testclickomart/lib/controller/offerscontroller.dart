@@ -12,15 +12,22 @@ class OffersController extends GetxController {
   getOffersFromApi() async {
     try {
       isLoading(true);
-      http.Response response = await http.post(Uri.tryParse('https://be.clickomart.com/api/v1/itemCollections/get')!,
-      headers: { HttpHeaders.authorizationHeader: '22D196EC5C6F345377A67AD9F4BDDF',});
+      debugPrint("Getting Offers");
+      http.Response response = await http.post(
+          Uri.tryParse('https://be.clickomart.com/api/v1/itemCollections/get')!,
+          headers: {
+            HttpHeaders.authorizationHeader: '22D196EC5C6F345377A67AD9F4BDDF',
+          });
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
         offers = offers_model.Offers.fromJson(result)
-            .response!.where((element) => 
-            element.slug == "weekly-offers");
+            .response!
+            .where((element) => element.slug == "weekly-offers")
+            .toList();
         // debugPrint(offers.toString());
-      } else {}
+      } else {
+        debugPrint("Response code not b200");
+      }
     } catch (e) {
       debugPrint("Error while getting Data $e");
     } finally {
