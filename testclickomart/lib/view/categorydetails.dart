@@ -99,7 +99,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                             fontSize: 10,
                                             color: isSelected
                                                 ? Colors.blue
-                                                : Colors.black),
+                                                : Colors.black,
+                                                fontWeight: isSelected? FontWeight.bold : FontWeight.normal),
                                       ),
                                     ),
                                   ),

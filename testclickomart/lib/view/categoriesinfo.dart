@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:testclickomart/controller/categoriescontroller.dart';
 import 'package:testclickomart/controller/offerscontroller.dart';
 import 'package:testclickomart/view/categorydetails.dart';
+import 'package:testclickomart/widgets/collection.dart';
 
 class CategoriesInfo extends StatefulWidget {
   const CategoriesInfo({super.key});
@@ -140,7 +141,7 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                     itemBuilder: ((context, indexOffers) {
                                       String name = '';
                                       String discount = '';
-                                      String image = '';
+                                      String image ; 
                                       String description = '';
                                       String price = '';
                                       String discountPrice = '';
@@ -209,40 +210,13 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                       } catch (e) {
                                         discountPrice = '';
                                       }
-                                      return Column(
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 2),
-                                            child: SizedBox(
-                                              height: 200,
-                                              width: 123,
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(top:20),
-                                                child: Column(
-                                                  children: [
-                                                    Text(discount),
-                                                    Image.network(
-                                                      "${image.replaceAll(RegExp(r'clickomart-s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3\.eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r's3\.eu-central-1\.amazonaws\.com\/clickomart'), 'clickomart.imgix.net')}?w=200&auto=enhance,format",
-                                                      height: 64,
-                                                      width: 64,
-                                                    ),
-                                                    Text(name, maxLines: 1),
-                                                    Text(
-                                                      description.replaceAll(
-                                                          RegExp(
-                                                              r'<[^>]*>|&[^;]+;'),
-                                                          ''),
-                                                    ),
-                                                    Text(price),
-                                                    Text(discountPrice),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      );
+                                      return CustomCollection(
+                                          price: price,
+                                          description: description,
+                                          discount: discount,
+                                          discountPrice: discountPrice,
+                                          image: image,
+                                          name: name);      
                                     }),
                                     itemCount: offersController.offers
                                         ?.elementAt(index)
