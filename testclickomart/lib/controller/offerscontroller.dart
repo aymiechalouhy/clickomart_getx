@@ -12,7 +12,6 @@ class OffersController extends GetxController {
   getOffersFromApi() async {
     try {
       isLoading(true);
-      debugPrint("Getting Offers");
       http.Response response = await http.post(
           Uri.tryParse('https://be.clickomart.com/api/v1/itemCollections/get')!,
           headers: {
@@ -26,7 +25,7 @@ class OffersController extends GetxController {
             .toList();
         // debugPrint(offers.toString());
       } else {
-        debugPrint("Response code not b200");
+        debugPrint("Response code not 200");
       }
     } catch (e) {
       debugPrint("Error while getting Data $e");

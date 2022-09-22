@@ -24,18 +24,15 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   Widget build(BuildContext context) {
     ArgumentController controller = Get.put(ArgumentController());
-    debugPrint(controller.id?.trim());
-    debugPrint(categoriesController.cat!.toList().length.toString());
-    for (var element in categoriesController.cat!.toList()) {
-      debugPrint(element.sId);
-      debugPrint(controller.id?.trim());
-      debugPrint((element.sId == controller.id?.trim()).toString());
-    }
+    // debugPrint(categoriesController.cat!.toList().length.toString());
+    // for (var element in categoriesController.cat!.toList()) {
+    //   debugPrint(element.sId);
+    //   debugPrint(controller.id?.trim());
+    //   debugPrint((element.sId == controller.id?.trim()).toString());
+    // }
     selectedCategoryIndex = categoriesController.cat!
         .toList()
         .indexWhere((element) => element.sId == controller.id?.trim());
-    debugPrint("here_________________________________________");
-    debugPrint(selectedCategoryIndex.toString());
     return Scaffold(
       appBar: AppBar(title: const Text("Category Details")),
       body: SingleChildScrollView(
@@ -48,7 +45,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                 : Padding(
                     padding: const EdgeInsets.all(10),
                     child: SizedBox(
-                      height: 300,
+                      height: 150,
                       child: Padding(
                         padding: const EdgeInsets.only(top: 15),
                         child: ScrollablePositionedList.builder(
@@ -112,30 +109,59 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                             itemCount: categoriesController.cat!.length),
                       ),
                     )),
-            Column(
-              children: [
-                Text("${controller.id}"),
-                const Text("data"),
-                ListView.builder(
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          Text(categoriesController.cat!
-                              .elementAt(selectedCategoryIndex)
-                              .subcategories!
-                              .elementAt(index)
-                              .name
-                              .toString()),
-                        ],
-                      );
-                    },
-                    itemCount: categoriesController.cat!
-                        .elementAt(selectedCategoryIndex)
-                        .subcategories!
-                        .length),
-              ],
-            ),
+            
+                SizedBox(
+                  height: 60,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return Column(
+                                children: [
+                                      MaterialButton(
+                                      onPressed: (){},
+                                      child:Text(categoriesController.cat!
+                                          .elementAt(selectedCategoryIndex)
+                                          .subcategories!
+                                          .elementAt(index)
+                                          .name
+                                          .toString()),
+                                       ),
+                                ],
+                              );
+                      },
+                      itemCount: categoriesController.cat!
+                          .elementAt(selectedCategoryIndex)
+                          .subcategories!
+                          .length),
+                ), 
+
+
+                SizedBox(
+                  height: 450,
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return 
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15, bottom: 10),
+                          child: Text(categoriesController.cat!
+                                  .elementAt(selectedCategoryIndex)
+                                  .subcategories!
+                                  .elementAt(index)
+                                  .name
+                                  .toString(),style:const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18
+                                  ),),
+                            
+                        );
+                      },
+                      itemCount: categoriesController.cat!
+                          .elementAt(selectedCategoryIndex)
+                          .subcategories!
+                          .length),
+                )
           ],
         ),
       ),

@@ -73,12 +73,7 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                             child: Column(
                               children: [
                                 Image.network(
-                                  "${logo
-                                  .replaceAll(RegExp(r'clickomart-s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net')
-                                  .replaceAll(RegExp(r'clickomart\.s3\.eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net')
-                                  .replaceAll(RegExp(r'clickomart\.s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net')
-                                  .replaceAll(RegExp(r's3\.eu-central-1\.amazonaws\.com\/clickomart'), 'clickomart.imgix.net')
-                                  }?w=200&auto=enhance,format",
+                                  "${logo.replaceAll(RegExp(r'clickomart-s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3\.eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r's3\.eu-central-1\.amazonaws\.com\/clickomart'), 'clickomart.imgix.net')}?w=200&auto=enhance,format",
                                   height: 100,
                                   width: 100,
                                   errorBuilder: (context, error, stackTrace) {
@@ -122,10 +117,10 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
-                        debugPrint(offersController.offers
-                            ?.elementAt(index)
-                            .name
-                            .toString());
+                        // debugPrint(offersController.offers
+                        //     ?.elementAt(index)
+                        //     .name
+                        //     .toString());
                         return Column(
                           children: [
                             SizedBox(
@@ -204,7 +199,7 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                         price = '';
                                       }
 
-                                       try {
+                                      try {
                                         discountPrice = offersController.offers!
                                             .elementAt(index)
                                             .items!
@@ -214,8 +209,6 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                       } catch (e) {
                                         discountPrice = '';
                                       }
-
-                                      debugPrint(name.toString());
                                       return Column(
                                         children: [
                                           Padding(
@@ -224,26 +217,27 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                             child: SizedBox(
                                               height: 200,
                                               width: 123,
-                                              child: Column(
-                                                children: [                                               
-                                                  Text(discount),
-                                                  Image.network(  "${image
-                                  .replaceAll(RegExp(r'clickomart-s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net')
-                                  .replaceAll(RegExp(r'clickomart\.s3\.eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net')
-                                  .replaceAll(RegExp(r'clickomart\.s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net')
-                                  .replaceAll(RegExp(r's3\.eu-central-1\.amazonaws\.com\/clickomart'), 'clickomart.imgix.net')
-                                  }?w=200&auto=enhance,format",
-                                                    height: 64,
-                                                    width: 64,
-                                                  ),
-                                                  Text(name, maxLines: 1),
-                                                  Text(description.replaceAll(
-                                                      RegExp(
-                                                          r'<[^>]*>|&[^;]+;'),
-                                                      ''),),
-                                                  Text(price),
-                                                  Text(discountPrice),
-                                                ],
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(top:20),
+                                                child: Column(
+                                                  children: [
+                                                    Text(discount),
+                                                    Image.network(
+                                                      "${image.replaceAll(RegExp(r'clickomart-s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3\.eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r's3\.eu-central-1\.amazonaws\.com\/clickomart'), 'clickomart.imgix.net')}?w=200&auto=enhance,format",
+                                                      height: 64,
+                                                      width: 64,
+                                                    ),
+                                                    Text(name, maxLines: 1),
+                                                    Text(
+                                                      description.replaceAll(
+                                                          RegExp(
+                                                              r'<[^>]*>|&[^;]+;'),
+                                                          ''),
+                                                    ),
+                                                    Text(price),
+                                                    Text(discountPrice),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),
