@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:testclickomart/view/categoriesinfo.dart';
+import 'package:testclickomart/view/categories.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

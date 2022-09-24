@@ -3,10 +3,13 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-import 'package:testclickomart/model/offersmodel.dart' as offers_model;
+import 'package:testclickomart/model/collectionmodel.dart' as offers_model;
 
 class OffersController extends GetxController {
   Iterable<offers_model.Response>? offers;
+  Iterable<offers_model.Response>? products;
+  Iterable<offers_model.Response>? featuredproducts;
+  Iterable<offers_model.Response>? freshpicks;
   var isLoading = false.obs;
 
   getOffersFromApi() async {
@@ -18,12 +21,29 @@ class OffersController extends GetxController {
             HttpHeaders.authorizationHeader: '22D196EC5C6F345377A67AD9F4BDDF',
           });
       if (response.statusCode == 200) {
-        var result = jsonDecode(response.body);
+        
+        var result = json.decode(utf8.decode(response.bodyBytes));
+
         offers = offers_model.Offers.fromJson(result)
             .response!
             .where((element) => element.slug == "weekly-offers")
             .toList();
-        // debugPrint(offers.toString());
+
+        products = offers_model.Offers.fromJson(result)
+            .response!
+            .where((element) => element.slug == "new-products")
+            .toList();
+
+        featuredproducts = offers_model.Offers.fromJson(result)
+            .response!
+            .where((element) => element.slug == "featured-products")
+            .toList();
+
+        freshpicks = offers_model.Offers.fromJson(result)
+            .response!
+            .where((element) => element.slug == "fresh-picks")
+            .toList();
+
       } else {
         debugPrint("Response code not 200");
       }

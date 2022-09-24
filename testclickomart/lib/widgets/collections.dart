@@ -7,6 +7,7 @@ class CustomCollection extends StatelessWidget {
   final String discountPrice;
   final String image;
   final String description;
+  final VoidCallback onClicked;
 
   const CustomCollection({
     required this.price,
@@ -15,6 +16,7 @@ class CustomCollection extends StatelessWidget {
     required this.discountPrice,
     required this.image,
     required this.name,
+    required this.onClicked,
     Key? key,
   }) : super(key: key);
 
@@ -35,17 +37,18 @@ class CustomCollection extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 3),
-                        child: Text( '-'
+                        child: Text(
+                          '-'
                           '$discount LBP',
-                          style:
-                              const TextStyle(color: Colors.black, fontSize: 9.5),
+                          style: const TextStyle(
+                              color: Colors.black, fontSize: 9.5),
                         ),
                       ),
                     ]),
                 Column(children: [
                   IconButton(
                       icon: (const Icon(Icons.favorite)),
-                      color: Colors.blue,
+                      color: const Color.fromARGB(255, 238, 235, 238),
                       onPressed: () {}),
                 ]),
               ]),
@@ -63,15 +66,12 @@ class CustomCollection extends StatelessWidget {
                 width: 100,
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 0, top: 6, bottom: 17),
+                padding: const EdgeInsets.only(right: 0, top: 6, bottom: 15),
                 child: Text(
                   description.replaceAll(RegExp(r'<[^>]*>|&[^;]+;'), ''),
                   maxLines: 1,
                   style: const TextStyle(color: Colors.black, fontSize: 11),
                 ),
-              ),
-              const SizedBox(
-                height: 5,
               ),
             ]),
           ),
@@ -84,8 +84,7 @@ class CustomCollection extends StatelessWidget {
               foregroundColor: Colors.blue,
               backgroundColor: const Color.fromARGB(255, 238, 235, 238),
             ),
-            onPressed: () {
-            },
+            onPressed: onClicked,
             child: const Text('ADD TO CART'),
           ),
         ),
