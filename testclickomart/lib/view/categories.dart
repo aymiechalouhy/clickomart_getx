@@ -216,9 +216,14 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                         name: name,
                                         onClicked: () {
                                           Get.to(() => const ProductDetails(),
-                                              arguments: {
-                                                "id":"${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).name}"
-                                              });
+                                  arguments: {
+                                  "name":"${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).name}",
+                                  "image":"${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).image}",
+                                  "price":"${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).price}",
+                                  "description":"${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).description}",  
+                                  "discount":"${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).discount}",
+                                  "discountPrice":"${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).discountPrice}",  
+                                    });
                                         },
                                       );
                                     }),
