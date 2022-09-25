@@ -25,7 +25,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           discountPrice: "${controller.discountPrice}",
           image:
               "${controller.image?.replaceAll(RegExp(r'clickomart-s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3\.eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r's3\.eu-central-1\.amazonaws\.com\/clickomart'), 'clickomart.imgix.net')}?w=400&auto=enhance,format",
-          description: "${controller.description}",
+          description: "${controller.description?.replaceAll(RegExp(r'<[^>]*>|&[^;]+;'),'')}",
           price: "${controller.price}",
         ),
       ),

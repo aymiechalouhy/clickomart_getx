@@ -53,17 +53,20 @@ class CustomCollection extends StatelessWidget {
                 ]),
               ]),
               // Image.network(image.toString()),
-              Image.network(
-                "${image.toString().replaceAll(RegExp(r'clickomart-s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3\.eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r's3\.eu-central-1\.amazonaws\.com\/clickomart'), 'clickomart.imgix.net')}?w=200&auto=enhance,format",
-                errorBuilder: (ctx, o, n) {
-                  return Image.asset(
-                    "assets/images/load.png",
-                    height: 100,
-                    width: 100,
-                  );
-                },
-                height: 100,
-                width: 100,
+              InkWell(
+                onTap: onClicked,
+                child: Image.network(
+                  "${image.toString().replaceAll(RegExp(r'clickomart-s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3\.eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r's3\.eu-central-1\.amazonaws\.com\/clickomart'), 'clickomart.imgix.net')}?w=200&auto=enhance,format",
+                  errorBuilder: (ctx, o, n) {
+                    return Image.asset(
+                      "assets/images/load.png",
+                      height: 100,
+                      width: 100,
+                    );
+                  },
+                  height: 100,
+                  width: 100,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 0, top: 6, bottom: 15),
@@ -84,7 +87,7 @@ class CustomCollection extends StatelessWidget {
               foregroundColor: Colors.blue,
               backgroundColor: const Color.fromARGB(255, 238, 235, 238),
             ),
-            onPressed: onClicked,
+            onPressed: (){},
             child: const Text('ADD TO CART'),
           ),
         ),

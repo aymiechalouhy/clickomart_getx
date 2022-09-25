@@ -223,7 +223,8 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                   "description":"${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).description}",  
                                   "discount":"${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).discount}",
                                   "discountPrice":"${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).discountPrice}",  
-                                    });
+                                    }
+                                    );
                                         },
                                       );
                                     }),
@@ -363,10 +364,14 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                         name: name,
                                         onClicked: () {
                                           Get.to(() => const ProductDetails(),
-                                              arguments: {
-                                                "id":
-                                                    "${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).name}"
-                                              });
+                                                           arguments: {
+                                  "name":"${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).name}",
+                                  "image":"${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).image}",
+                                  "price":"${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).price}",
+                                  "description":"${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).description}",  
+                                  "discount":"${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).discount}",
+                                  "discountPrice":"${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).discountPrice}",  
+                                    });
                                         },
                                       );
                                     }),
@@ -509,8 +514,14 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                         name: name,
                                         onClicked: () {
                                           Get.to(() => const ProductDetails(),
-                                              arguments: {   "id":
-                                                    "${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).sId}"});
+                                  arguments: {
+                                  "name":"${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).name}",
+                                  "image":"${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).image}",
+                                  "price":"${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).price}",
+                                  "description":"${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).description}",  
+                                  "discount":"${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).discount}",
+                                  "discountPrice":"${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).discountPrice}",  
+                                    });
                                         },
                                       );
                                     }),
@@ -648,10 +659,14 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                         name: name,
                                         onClicked: () {
                                           Get.to(() => const ProductDetails(),
-                                              arguments: {
-                                                "id":
-                                                    "${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).sId}"
-                                              });
+                                         arguments: {
+                                  "name":"${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).name}",
+                                  "image":"${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).image}",
+                                  "price":"${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).price}",
+                                  "description":"${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).description}",  
+                                  "discount":"${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).discount}",
+                                  "discountPrice":"${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).discountPrice}",  
+                                    });
                                         },
                                       );
                                     }),

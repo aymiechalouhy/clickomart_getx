@@ -40,14 +40,16 @@ class CustomCollection extends StatelessWidget {
                  ),
                  Row(
                    children: [
-                     Text(
-                          name,
-                          style: const TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
+                     Flexible(
+                       child: Text(
+                            name,
+                            style: const TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            maxLines: 3,
                           ),
-                          maxLines: 2,
-                        ),
+                     ),
                    ],
                  ),         
                 ],
