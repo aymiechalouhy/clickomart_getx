@@ -1,5 +1,5 @@
-import 'dart:convert';
 import 'dart:io';
+import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
@@ -7,7 +7,7 @@ import '../model/categoriesmodel.dart' as categories_model;
 
 class CategoriesController extends GetxController {
   Iterable<categories_model.Response>? cat;
-  var isDataLoading = false.obs;
+  var isDataLoading = true.obs;
 
   getCategoriesFromApi() async {
     try {

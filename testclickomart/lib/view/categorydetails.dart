@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:testclickomart/controller/categoriescontroller.dart';
+import 'package:testclickomart/controller/itemscontroller.dart';
 import 'package:testclickomart/controller/argumentscontroller.dart';
+import 'package:testclickomart/controller/categoriescontroller.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class CategoryDetails extends StatefulWidget {
@@ -15,26 +16,26 @@ class CategoryDetails extends StatefulWidget {
 class _CategoryDetailsState extends State<CategoryDetails> {
   int selectedCategoryIndex = 0;
   int selectedSubcategories = 0;
-  final itemController = ItemScrollController();
   final scrollHorizontally = ItemScrollController();
   final scrollMaincategories = ItemScrollController();
+  ItemsController itemsController = Get.put(ItemsController());
   CategoriesController categoriesController = Get.put(CategoriesController());
+  ArgumentController controller = Get.put(ArgumentController());
 
   @override
   void initState() {
     super.initState();
     categoriesController.getCategoriesFromApi();
-    // itemsController.getItemsFromApi();
+    itemsController.getItemsFromApi(controller.id);
   }
 
   @override
   Widget build(BuildContext context) {
-    ArgumentController controller = Get.put(ArgumentController());
+
     // debugPrint(categoriesController.cat!.toList().length.toString());
     // for (var element in categoriesController.cat!.toList()) {
     //   debugPrint(element.sId);
     //   debugPrint(controller.id?.trim());
-    //   debugPrint((element.sId == controller.id?.trim()).toString());
     // }
     selectedCategoryIndex = categoriesController.cat!
         .toList()
@@ -45,11 +46,6 @@ class _CategoryDetailsState extends State<CategoryDetails> {
           index: selectedCategoryIndex,
           duration: const Duration(milliseconds: 500));
     });
-
-    // selectedCategoryIndex = categoriesController.cat!
-    //     .elementAt(selectedCategoryIndex)
-    //     .subcategories!
-    //     .length;
 
     return Scaffold(
       appBar: AppBar(title: const Text("Category Details")),
@@ -143,15 +139,15 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    final isSelected = selectedSubcategories == index;
+                    // final isSelected = selectedSubcategories == index;
                     return Column(
                       children: [
                         MaterialButton(
                           onPressed: () {
                             debugPrint("Pressed");
-                            setState(() {
-                              selectedSubcategories == index;
-                            });
+                            // setState(() {
+                            //   selectedSubcategories == index;
+                            // });
                           },
                           child: Text(
                             categoriesController.cat!
@@ -160,8 +156,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                 .elementAt(index)
                                 .name
                                 .toString(),
-                            style: TextStyle(
-                                color: isSelected ? Colors.blue : Colors.black),
+                            style: const TextStyle(color: Colors.black),
                           ),
                         ),
                       ],
@@ -174,20 +169,60 @@ class _CategoryDetailsState extends State<CategoryDetails> {
             ),
             SizedBox(
               height: 450,
-              child: ListView.builder(
+              child: ScrollablePositionedList.builder(
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.only(left: 15, bottom: 10),
-                      child: Text(
-                        categoriesController.cat!
-                            .elementAt(selectedCategoryIndex)
-                            .subcategories!
-                            .elementAt(index)
-                            .name
-                            .toString(),
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            categoriesController.cat!
+                                .elementAt(selectedCategoryIndex)
+                                .subcategories!
+                                .elementAt(index)
+                                .name
+                                .toString(),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                          Column(
+                            children: [
+                              //hanling
+                              // ?
+                              Obx((() => !itemsController.isDataLoading.value
+                                  ? GridView.builder(
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 3,
+                                              mainAxisExtent: 290,
+                                              mainAxisSpacing: 20,
+                                              crossAxisSpacing: 10),
+                                      physics: const ScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemBuilder: (context, itemIndex) {
+                                        String name = '';
+                                        try {
+                                          name = itemsController.items!
+                                              .elementAt(itemIndex)
+                                              .name
+                                              .toString();
+                                        } catch (e) {
+                                          name = '';
+                                        }
+                                        return Column(
+                                          children: [
+                                            Text(name),
+                                          ],
+                                        );
+                                      },
+                                      itemCount: itemsController.items?.length,
+                                    )
+                                  : const Text("No items")))
+                            ],
+                          ),
+                        ],
                       ),
                     );
                   },
