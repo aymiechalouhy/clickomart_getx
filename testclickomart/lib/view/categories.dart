@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:testclickomart/controller/categoriescontroller.dart';
-import 'package:testclickomart/controller/offerscontroller.dart';
+import 'package:testclickomart/controller/collectionscontroller.dart';
 import 'package:testclickomart/view/categorydetails.dart';
 import 'package:testclickomart/view/productdetails.dart';
 import 'package:testclickomart/widgets/collections.dart';
@@ -15,7 +15,7 @@ class CategoriesInfo extends StatefulWidget {
 
 class _CategoriesInfoState extends State<CategoriesInfo> {
   CategoriesController categoriesController = Get.put(CategoriesController());
-  OffersController offersController = Get.put(OffersController());
+  CollectionController offersController = Get.put(CollectionController());
 
   @override
   void initState() {

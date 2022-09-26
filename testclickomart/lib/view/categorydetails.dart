@@ -1,9 +1,8 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-// import '../controller/itemscontroller.dart';
-import 'package:testclickomart/controller/argumentscontroller.dart';
 import 'package:testclickomart/controller/categoriescontroller.dart';
+import 'package:testclickomart/controller/argumentscontroller.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class CategoryDetails extends StatefulWidget {
@@ -20,7 +19,6 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   final scrollHorizontally = ItemScrollController();
   final scrollMaincategories = ItemScrollController();
   CategoriesController categoriesController = Get.put(CategoriesController());
-  // ItemsController itemsController = Get.put(ItemsController());
 
   @override
   void initState() {

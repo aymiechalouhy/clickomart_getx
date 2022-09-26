@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:testclickomart/model/collectionmodel.dart' as offers_model;
 
-class OffersController extends GetxController {
+class CollectionController extends GetxController {
   Iterable<offers_model.Response>? offers;
   Iterable<offers_model.Response>? products;
   Iterable<offers_model.Response>? featuredproducts;

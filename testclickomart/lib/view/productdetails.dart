@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:testclickomart/widgets/onecollection.dart';
-import 'package:testclickomart/controller/collectioncontroller.dart';
+import 'package:testclickomart/controller/argumentscontroller.dart';
 
 class ProductDetails extends StatefulWidget {
   const ProductDetails({super.key});
@@ -13,7 +13,7 @@ class ProductDetails extends StatefulWidget {
 class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
-    CollectionController controller = Get.put(CollectionController());
+    ArgumentController controller = Get.put(ArgumentController());
     return Scaffold(
       appBar: AppBar(
         title: const Text("Product Details"),
