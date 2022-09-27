@@ -216,7 +216,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                         } catch (e) {
                                           name = '';
                                         }
-                                           try {
+                                        try {
                                           image = itemsController.items!
                                               .elementAt(itemIndex)
                                               .image
@@ -224,7 +224,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                         } catch (e) {
                                           image = '';
                                         }
-                                           try {
+                                        try {
                                           description = itemsController.items!
                                               .elementAt(itemIndex)
                                               .description
@@ -232,7 +232,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                         } catch (e) {
                                           description = '';
                                         }
-                                           try {
+                                        try {
                                           price = itemsController.items!
                                               .elementAt(itemIndex)
                                               .price
@@ -240,7 +240,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                         } catch (e) {
                                           price = '';
                                         }
-                                           try {
+                                        try {
                                           discount = itemsController.items!
                                               .elementAt(itemIndex)
                                               .discount
@@ -248,7 +248,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                         } catch (e) {
                                           discount = '';
                                         }
-                                           try {
+                                        try {
                                           discountprice = itemsController.items!
                                               .elementAt(itemIndex)
                                               .discountPrice
@@ -265,7 +265,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                                   price: price,
                                                   description: description,
                                                   discount: discount,
-                                                  discountPrice:discountprice,
+                                                  discountPrice: discountprice,
                                                   image: image,
                                                   name: name),
                                             )
@@ -274,7 +274,44 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                       },
                                       itemCount: itemsController.items?.length,
                                     )
-                                  : const Text("No items")))
+                                  : GridView.builder(
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 3,
+                                              mainAxisExtent: 290,
+                                              mainAxisSpacing: 20,
+                                              crossAxisSpacing: 10),
+                                      physics: const ScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemBuilder: (context, itemIndex) {
+                                        return Column(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 10),
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                      height: 155,
+                                                      width: 120,
+                                                      color: Colors.white),
+                                                  Container(
+                                                    height: 40,
+                                                    width: 120,
+                                                    color:  const Color.fromARGB(242, 238, 235, 238),
+                                                  ),
+                                                  Container(
+                                                      height: 60,
+                                                      width: 120,
+                                                      color: Colors.white38)
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        );
+                                      },
+                                      itemCount: 6,
+                                    )))
                             ],
                           ),
                         ],

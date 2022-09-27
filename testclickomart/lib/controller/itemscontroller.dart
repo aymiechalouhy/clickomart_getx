@@ -4,8 +4,11 @@ import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import '../model/itemsmodel.dart' as items_model;
+
 class ItemsController extends GetxController {
   Iterable<items_model.Items>? items;
+
+  //false
   var isDataLoading = false.obs;
   //  Map<String, List<items_model.Items>> indexedItems = <String, List<items_model.Items>>{};
   getItemsFromApi(String? categoryId) async {
@@ -19,6 +22,7 @@ class ItemsController extends GetxController {
     body["categoryIds"] = categIds;
     }
     try {
+      //true
       isDataLoading(true);
        http.Response response = await http.post(Uri.tryParse('https://be.clickomart.com/api/v1/items/get/')!,
         headers: {
@@ -34,6 +38,7 @@ class ItemsController extends GetxController {
     } catch (e) {
       debugPrint("Error while getting Data $e");
     } finally {
+      //false
       isDataLoading(false);
     }
     // final Map<String, dynamic> responseJson = json.decode(utf8.decode(response.bodyBytes));
