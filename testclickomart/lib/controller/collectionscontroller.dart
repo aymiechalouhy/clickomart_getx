@@ -10,6 +10,7 @@ class CollectionController extends GetxController {
   Iterable<offers_model.Response>? products;
   Iterable<offers_model.Response>? featuredproducts;
   Iterable<offers_model.Response>? freshpicks;
+  //false
   var isLoading = false.obs;
 
   getOffersFromApi() async {
@@ -50,6 +51,7 @@ class CollectionController extends GetxController {
     } catch (e) {
       debugPrint("Error while getting Data $e");
     } finally {
+      //false
       isLoading(false);
     }
   }

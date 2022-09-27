@@ -29,17 +29,16 @@ class _CategoriesInfoState extends State<CategoriesInfo>
     offersController.getOffersFromApi();
 
     controller = AnimationController(
-        duration: const Duration(seconds: 7),
-        vsync: this,
-        // value: 0,
-        // lowerBound: 1,
-        // upperBound: 5
-        );
-    animation =
-        Tween(
-          begin: 0.0,
-          end: 1.0,
-        ).animate(controller);
+      duration: const Duration(seconds: 7),
+      vsync: this,
+      // value: 0,
+      // lowerBound: 1,
+      // upperBound: 5
+    );
+    animation = Tween(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(controller);
     controller.forward();
   }
 
@@ -76,16 +75,17 @@ class _CategoriesInfoState extends State<CategoriesInfo>
                           child: Column(
                             children: [
                               Container(
-                                  height: 80,
-                                  width: 80,
-                                  color: const Color.fromARGB(255, 214, 221, 224),
-                                ),             
+                                height: 80,
+                                width: 80,
+                                color: const Color.fromARGB(255, 214, 221, 224),
+                              ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 10),
                                 child: Container(
                                   height: 15,
                                   width: 60,
-                                  color: const Color.fromARGB(255, 235, 240, 243),
+                                  color:
+                                      const Color.fromARGB(255, 235, 240, 243),
                                 ),
                               ),
                             ],
@@ -169,7 +169,37 @@ class _CategoriesInfoState extends State<CategoriesInfo>
           ),
           Obx(
             () => offersController.isLoading.value
-                ? const CircularProgressIndicator()
+                ? SizedBox(
+                  height: 250,
+                  child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 1,
+                              mainAxisExtent: 115, // l3ared
+                              mainAxisSpacing: 10),
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: ((context, i) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 191,
+                                width: 122,
+                                color: Colors.white,
+                              ),
+                              Container(
+                                height: 39,
+                                width: 122,
+                                color: const Color.fromARGB(255, 238, 235, 238),
+                              )
+                            ],
+                          ),
+                        );
+                      }),
+                      itemCount: 10),
+                )
                 : SizedBox(
                     height: 350,
                     width: double.infinity,
@@ -319,7 +349,37 @@ class _CategoriesInfoState extends State<CategoriesInfo>
           ),
           Obx(
             () => offersController.isLoading.value
-                ? const CircularProgressIndicator()
+                ? SizedBox(
+                  height: 250,
+                  child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 1,
+                              mainAxisExtent: 115, // l3ared
+                              mainAxisSpacing: 10),
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: ((context, i) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 191,
+                                width: 122,
+                                color: Colors.white,
+                              ),
+                              Container(
+                                height: 39,
+                                width: 122,
+                                color: const Color.fromARGB(255, 238, 235, 238),
+                              )
+                            ],
+                          ),
+                        );
+                      }),
+                      itemCount: 10),
+                )
                 : SizedBox(
                     height: 350,
                     width: double.infinity,
@@ -472,7 +532,37 @@ class _CategoriesInfoState extends State<CategoriesInfo>
           ),
           Obx(
             () => offersController.isLoading.value
-                ? const CircularProgressIndicator()
+                ? SizedBox(
+                  height: 250,
+                  child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 1,
+                              mainAxisExtent: 115, // l3ared
+                              mainAxisSpacing: 10),
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: ((context, i) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 191,
+                                width: 122,
+                                color: Colors.white,
+                              ),
+                              Container(
+                                height: 39,
+                                width: 122,
+                                color: const Color.fromARGB(255, 238, 235, 238),
+                              )
+                            ],
+                          ),
+                        );
+                      }),
+                      itemCount: 10),
+                )
                 : SizedBox(
                     height: 350,
                     width: double.infinity,
@@ -628,7 +718,37 @@ class _CategoriesInfoState extends State<CategoriesInfo>
           ),
           Obx(
             () => offersController.isLoading.value
-                ? const CircularProgressIndicator()
+                ? SizedBox(
+                  height: 250,
+                  child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 1,
+                              mainAxisExtent: 115, // l3ared
+                              mainAxisSpacing: 10),
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: ((context, i) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 191,
+                                width: 122,
+                                color: Colors.white,
+                              ),
+                              Container(
+                                height: 39,
+                                width: 122,
+                                color: const Color.fromARGB(255, 238, 235, 238),
+                              )
+                            ],
+                          ),
+                        );
+                      }),
+                      itemCount: 10),
+                )
                 : SizedBox(
                     height: 350,
                     width: double.infinity,
