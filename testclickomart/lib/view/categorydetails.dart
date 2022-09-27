@@ -203,6 +203,11 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                       shrinkWrap: true,
                                       itemBuilder: (context, itemIndex) {
                                         String name = '';
+                                        String image = '';
+                                        String description = '';
+                                        String price = '';
+                                        String discount = '';
+                                        String discountprice = '';
                                         try {
                                           name = itemsController.items!
                                               .elementAt(itemIndex)
@@ -211,16 +216,57 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                         } catch (e) {
                                           name = '';
                                         }
+                                           try {
+                                          image = itemsController.items!
+                                              .elementAt(itemIndex)
+                                              .image
+                                              .toString();
+                                        } catch (e) {
+                                          image = '';
+                                        }
+                                           try {
+                                          description = itemsController.items!
+                                              .elementAt(itemIndex)
+                                              .description
+                                              .toString();
+                                        } catch (e) {
+                                          description = '';
+                                        }
+                                           try {
+                                          price = itemsController.items!
+                                              .elementAt(itemIndex)
+                                              .price
+                                              .toString();
+                                        } catch (e) {
+                                          price = '';
+                                        }
+                                           try {
+                                          discount = itemsController.items!
+                                              .elementAt(itemIndex)
+                                              .discount
+                                              .toString();
+                                        } catch (e) {
+                                          discount = '';
+                                        }
+                                           try {
+                                          discountprice = itemsController.items!
+                                              .elementAt(itemIndex)
+                                              .discountPrice
+                                              .toString();
+                                        } catch (e) {
+                                          discountprice = '';
+                                        }
                                         return Column(
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.only(top: 10),
+                                              padding: const EdgeInsets.only(
+                                                  top: 10),
                                               child: CustomItems(
-                                                  price: "price",
-                                                  description: "description",
-                                                  discount: "discount",
-                                                  discountPrice: "discountPrice",
-                                                  image: "image",
+                                                  price: price,
+                                                  description: description,
+                                                  discount: discount,
+                                                  discountPrice:discountprice,
+                                                  image: image,
                                                   name: name),
                                             )
                                           ],

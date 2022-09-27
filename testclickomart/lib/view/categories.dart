@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/animation.dart';
 import 'package:testclickomart/controller/categoriescontroller.dart';
 import 'package:testclickomart/controller/collectionscontroller.dart';
 import 'package:testclickomart/view/categorydetails.dart';
@@ -13,7 +14,11 @@ class CategoriesInfo extends StatefulWidget {
   State<CategoriesInfo> createState() => _CategoriesInfoState();
 }
 
-class _CategoriesInfoState extends State<CategoriesInfo> {
+class _CategoriesInfoState extends State<CategoriesInfo>
+    with TickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation<double> animation;
+
   CategoriesController categoriesController = Get.put(CategoriesController());
   CollectionController offersController = Get.put(CollectionController());
 
@@ -22,6 +27,26 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
     super.initState();
     categoriesController.getCategoriesFromApi();
     offersController.getOffersFromApi();
+
+    controller = AnimationController(
+        duration: const Duration(seconds: 7),
+        vsync: this,
+        // value: 0,
+        // lowerBound: 1,
+        // upperBound: 5
+        );
+    animation =
+        Tween(
+          begin: 0.0,
+          end: 1.0,
+        ).animate(controller);
+    controller.forward();
+  }
+
+  @override
+  dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -34,8 +59,7 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
         child: Column(children: [
           Obx(
             () => categoriesController.isDataLoading.value
-                ?
-                 GridView.builder(
+                ? GridView.builder(
                     physics: const ScrollPhysics(),
                     shrinkWrap: true,
                     gridDelegate:
@@ -45,24 +69,27 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                             mainAxisExtent: 150),
                     itemBuilder: ((context, i) {
                       return Padding(
-                        padding: const EdgeInsets.only(top: 20, right: 20, left: 20),
-                        child: Column(
-                          children: [
-                            AnimatedContainer(
-                              height: 80,
-                              width: 80,
-                              color: const Color.fromARGB(255, 235, 240, 243),
-                              duration: const Duration(seconds: 2),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10),
-                              child: Container(
-                                height: 15,
-                                width: 60,
-                                color: const Color.fromARGB(255, 235, 240, 243),
+                        padding:
+                            const EdgeInsets.only(top: 20, right: 20, left: 20),
+                        child: FadeTransition(
+                          opacity: animation,
+                          child: Column(
+                            children: [
+                              Container(
+                                  height: 80,
+                                  width: 80,
+                                  color: const Color.fromARGB(255, 214, 221, 224),
+                                ),             
+                              Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: Container(
+                                  height: 15,
+                                  width: 60,
+                                  color: const Color.fromARGB(255, 235, 240, 243),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       );
                     }),
