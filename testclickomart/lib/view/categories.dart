@@ -34,9 +34,39 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
         child: Column(children: [
           Obx(
             () => categoriesController.isDataLoading.value
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
+                ?
+                 GridView.builder(
+                    physics: const ScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 0,
+                            mainAxisExtent: 150),
+                    itemBuilder: ((context, i) {
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 20, right: 20, left: 20),
+                        child: Column(
+                          children: [
+                            AnimatedContainer(
+                              height: 80,
+                              width: 80,
+                              color: const Color.fromARGB(255, 235, 240, 243),
+                              duration: const Duration(seconds: 2),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Container(
+                                height: 15,
+                                width: 60,
+                                color: const Color.fromARGB(255, 235, 240, 243),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }),
+                    itemCount: 12)
                 : Padding(
                     padding: const EdgeInsets.all(10),
                     child: GridView.builder(
@@ -94,7 +124,8 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                             ),
                           );
                         }),
-                        itemCount: categoriesController.cat!.length)),
+                        itemCount: categoriesController.cat?.length),
+                  ),
           ),
           Container(
             height: 60,
@@ -216,15 +247,20 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                         name: name,
                                         onClicked: () {
                                           Get.to(() => const ProductDetails(),
-                                  arguments: {
-                                  "name":"${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).name}",
-                                  "image":"${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).image}",
-                                  "price":"${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).price}",
-                                  "description":"${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).description}",  
-                                  "discount":"${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).discount}",
-                                  "discountPrice":"${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).discountPrice}",  
-                                    }
-                                    );
+                                              arguments: {
+                                                "name":
+                                                    "${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).name}",
+                                                "image":
+                                                    "${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).image}",
+                                                "price":
+                                                    "${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).price}",
+                                                "description":
+                                                    "${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).description}",
+                                                "discount":
+                                                    "${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).discount}",
+                                                "discountPrice":
+                                                    "${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).discountPrice}",
+                                              });
                                         },
                                       );
                                     }),
@@ -364,14 +400,20 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                         name: name,
                                         onClicked: () {
                                           Get.to(() => const ProductDetails(),
-                                                           arguments: {
-                                  "name":"${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).name}",
-                                  "image":"${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).image}",
-                                  "price":"${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).price}",
-                                  "description":"${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).description}",  
-                                  "discount":"${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).discount}",
-                                  "discountPrice":"${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).discountPrice}",  
-                                    });
+                                              arguments: {
+                                                "name":
+                                                    "${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).name}",
+                                                "image":
+                                                    "${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).image}",
+                                                "price":
+                                                    "${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).price}",
+                                                "description":
+                                                    "${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).description}",
+                                                "discount":
+                                                    "${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).discount}",
+                                                "discountPrice":
+                                                    "${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).discountPrice}",
+                                              });
                                         },
                                       );
                                     }),
@@ -514,14 +556,20 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                         name: name,
                                         onClicked: () {
                                           Get.to(() => const ProductDetails(),
-                                  arguments: {
-                                  "name":"${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).name}",
-                                  "image":"${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).image}",
-                                  "price":"${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).price}",
-                                  "description":"${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).description}",  
-                                  "discount":"${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).discount}",
-                                  "discountPrice":"${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).discountPrice}",  
-                                    });
+                                              arguments: {
+                                                "name":
+                                                    "${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).name}",
+                                                "image":
+                                                    "${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).image}",
+                                                "price":
+                                                    "${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).price}",
+                                                "description":
+                                                    "${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).description}",
+                                                "discount":
+                                                    "${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).discount}",
+                                                "discountPrice":
+                                                    "${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).discountPrice}",
+                                              });
                                         },
                                       );
                                     }),
@@ -659,14 +707,20 @@ class _CategoriesInfoState extends State<CategoriesInfo> {
                                         name: name,
                                         onClicked: () {
                                           Get.to(() => const ProductDetails(),
-                                         arguments: {
-                                  "name":"${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).name}",
-                                  "image":"${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).image}",
-                                  "price":"${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).price}",
-                                  "description":"${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).description}",  
-                                  "discount":"${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).discount}",
-                                  "discountPrice":"${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).discountPrice}",  
-                                    });
+                                              arguments: {
+                                                "name":
+                                                    "${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).name}",
+                                                "image":
+                                                    "${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).image}",
+                                                "price":
+                                                    "${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).price}",
+                                                "description":
+                                                    "${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).description}",
+                                                "discount":
+                                                    "${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).discount}",
+                                                "discountPrice":
+                                                    "${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).discountPrice}",
+                                              });
                                         },
                                       );
                                     }),

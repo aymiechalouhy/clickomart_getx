@@ -5,6 +5,7 @@ import 'package:testclickomart/controller/itemscontroller.dart';
 import 'package:testclickomart/controller/argumentscontroller.dart';
 import 'package:testclickomart/controller/categoriescontroller.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:testclickomart/widgets/itemswidget.dart';
 
 class CategoryDetails extends StatefulWidget {
   const CategoryDetails({super.key});
@@ -19,8 +20,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   final scrollHorizontally = ItemScrollController();
   final scrollMaincategories = ItemScrollController();
   ItemsController itemsController = Get.put(ItemsController());
-  CategoriesController categoriesController = Get.put(CategoriesController());
   ArgumentController controller = Get.put(ArgumentController());
+  CategoriesController categoriesController = Get.put(CategoriesController());
 
   @override
   void initState() {
@@ -31,7 +32,6 @@ class _CategoryDetailsState extends State<CategoryDetails> {
 
   @override
   Widget build(BuildContext context) {
-
     // debugPrint(categoriesController.cat!.toList().length.toString());
     // for (var element in categoriesController.cat!.toList()) {
     //   debugPrint(element.sId);
@@ -213,7 +213,16 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                         }
                                         return Column(
                                           children: [
-                                            Text(name),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 10),
+                                              child: CustomItems(
+                                                  price: "price",
+                                                  description: "description",
+                                                  discount: "discount",
+                                                  discountPrice: "discountPrice",
+                                                  image: "image",
+                                                  name: name),
+                                            )
                                           ],
                                         );
                                       },
