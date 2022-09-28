@@ -1,52 +1,35 @@
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/animation.dart';
+// import 'package:carousel_slider/carousel_slider.dart';
+import 'package:testclickomart/widgets/collections.dart';
+import 'package:testclickomart/view/productdetails.dart';
+import 'package:testclickomart/view/categorydetails.dart';
+import 'package:testclickomart/controller/adscontroller.dart';
 import 'package:testclickomart/controller/categoriescontroller.dart';
 import 'package:testclickomart/controller/collectionscontroller.dart';
-import 'package:testclickomart/view/categorydetails.dart';
-import 'package:testclickomart/view/productdetails.dart';
-import 'package:testclickomart/widgets/collections.dart';
+// import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
-class CategoriesInfo extends StatefulWidget {
-  const CategoriesInfo({super.key});
+class Categories extends StatefulWidget {
+  const Categories({super.key});
 
   @override
-  State<CategoriesInfo> createState() => _CategoriesInfoState();
+  State<Categories> createState() => _CategoriesState();
 }
 
-class _CategoriesInfoState extends State<CategoriesInfo>
-    with TickerProviderStateMixin {
-  late AnimationController controller;
-  late Animation<double> animation;
-
-  CategoriesController categoriesController = Get.put(CategoriesController());
+class _CategoriesState extends State<Categories>{
+ CategoriesController categoriesController = Get.put(CategoriesController());
   CollectionController offersController = Get.put(CollectionController());
+  AdsController adsController = Get.put(AdsController());
 
   @override
   void initState() {
     super.initState();
     categoriesController.getCategoriesFromApi();
     offersController.getOffersFromApi();
-
-    controller = AnimationController(
-      duration: const Duration(seconds: 7),
-      vsync: this,
-      // value: 0,
-      // lowerBound: 1,
-      // upperBound: 5
-    );
-    animation = Tween(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(controller);
-    controller.forward();
+    adsController.getAdsFromApi();
   }
 
-  @override
-  dispose() {
-    controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +39,50 @@ class _CategoriesInfoState extends State<CategoriesInfo>
       ),
       body: SingleChildScrollView(
         child: Column(children: [
+          //start
+          // Obx(
+          //   () => categoriesController.isDataLoading.value
+          //       ? const Text("please wait")
+          //       : ListView.builder(
+          //               physics: const ScrollPhysics(),
+          //               shrinkWrap: true,
+          //               itemBuilder: ((context, i) {
+          //                 String image = '';
+          //                 try {
+          //                   image = adsController.ads!
+          //                       .elementAt(i)
+          //                       .image
+          //                       .toString();
+          //                 } catch (e) {
+          //                   image = '';
+          //                 }
+          //                 return SizedBox(
+          //                   height: 300,
+          //                   child: Row(
+          //                     children: const[
+          // ImageSlideshow(
+          //   width: double.infinity,
+          //   height: 200,
+          //   initialPage: 0,
+          //   indicatorColor: Colors.transparent,
+          //   indicatorBackgroundColor: Colors.transparent,
+          //   autoPlayInterval: 3000,
+          //   isLoop: true,
+          //   children: [
+          //     Image.network(
+          //       "${image.replaceAll(RegExp(r'clickomart-s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3\.eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r'clickomart\.s3-eu-central-1\.amazonaws\.com'), 'clickomart.imgix.net').replaceAll(RegExp(r's3\.eu-central-1\.amazonaws\.com\/clickomart'), 'clickomart.imgix.net')}?w=200&auto=enhance,format",
+          //       fit: BoxFit.cover,
+          //     ),
+          //   ],
+          //                       // ),
+          //                     ],
+          //                   ),
+          //                 );
+          //               }),
+          //               itemCount: adsController.ads?.length),
+
+          // ),
+          //end
           Obx(
             () => categoriesController.isDataLoading.value
                 ? GridView.builder(
@@ -70,27 +97,29 @@ class _CategoriesInfoState extends State<CategoriesInfo>
                       return Padding(
                         padding:
                             const EdgeInsets.only(top: 20, right: 20, left: 20),
-                        child: FadeTransition(
-                          opacity: animation,
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 80,
-                                width: 80,
-                                color: const Color.fromARGB(255, 214, 221, 224),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: Container(
-                                  height: 15,
-                                  width: 60,
+                        child: Shimmer.fromColors(
+                            baseColor: const Color.fromARGB(255, 235, 240, 243),
+                            highlightColor:Colors.white,
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 80,
+                                  width: 80,
                                   color:
                                       const Color.fromARGB(255, 235, 240, 243),
                                 ),
-                              ),
-                            ],
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: Container(
+                                    height: 15,
+                                    width: 60,
+                                    color: const Color.fromARGB(
+                                        255, 235, 240, 243),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
                       );
                     }),
                     itemCount: 12)
@@ -170,36 +199,44 @@ class _CategoriesInfoState extends State<CategoriesInfo>
           Obx(
             () => offersController.isLoading.value
                 ? SizedBox(
-                  height: 250,
-                  child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 1,
-                              mainAxisExtent: 115, // l3ared
-                              mainAxisSpacing: 10),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: ((context, i) {
-                        return Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 191,
-                                width: 122,
-                                color: Colors.white,
-                              ),
-                              Container(
-                                height: 39,
-                                width: 122,
-                                color: const Color.fromARGB(255, 238, 235, 238),
-                              )
-                            ],
-                          ),
-                        );
-                      }),
-                      itemCount: 10),
-                )
+                    height: 250,
+                    child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 1,
+                                mainAxisExtent: 115, // l3ared
+                                mainAxisSpacing: 10),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: ((context, i) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Column(
+                              children: [
+                                Shimmer.fromColors(
+                                baseColor: Colors.white,
+                                highlightColor: const Color.fromRGBO(245, 241, 241, 1),
+                                  child: Container(
+                                    height: 191,
+                                    width: 122,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Shimmer.fromColors(
+                                  baseColor: const Color.fromARGB(255, 238, 235, 238),
+                                  highlightColor: Colors.white,
+                                  child: Container(
+                                    height: 39,
+                                    width: 122,
+                                    color:const Color.fromARGB(255, 238, 235, 238),
+                                  ),
+                                )
+                              ],
+                            ),
+                          );
+                        }),
+                        itemCount: 10),
+                  )
                 : SizedBox(
                     height: 350,
                     width: double.infinity,
@@ -350,36 +387,44 @@ class _CategoriesInfoState extends State<CategoriesInfo>
           Obx(
             () => offersController.isLoading.value
                 ? SizedBox(
-                  height: 250,
-                  child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 1,
-                              mainAxisExtent: 115, // l3ared
-                              mainAxisSpacing: 10),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: ((context, i) {
-                        return Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 191,
-                                width: 122,
-                                color: Colors.white,
-                              ),
-                              Container(
-                                height: 39,
-                                width: 122,
-                                color: const Color.fromARGB(255, 238, 235, 238),
-                              )
-                            ],
-                          ),
-                        );
-                      }),
-                      itemCount: 10),
-                )
+                    height: 250,
+                    child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 1,
+                                mainAxisExtent: 115, // l3ared
+                                mainAxisSpacing: 10),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: ((context, i) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Column(
+                              children: [
+                                Shimmer.fromColors(
+                                baseColor: Colors.white,
+                                highlightColor: const Color.fromRGBO(245, 241, 241, 1),
+                                  child: Container(
+                                    height: 191,
+                                    width: 122,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Shimmer.fromColors(
+                                  baseColor: const Color.fromARGB(255, 238, 235, 238),
+                                  highlightColor: Colors.white,
+                                  child: Container(
+                                    height: 39,
+                                    width: 122,
+                                    color:const Color.fromARGB(255, 238, 235, 238),
+                                  ),
+                                )
+                              ],
+                            ),
+                          );
+                        }),
+                        itemCount: 10),
+                  )
                 : SizedBox(
                     height: 350,
                     width: double.infinity,
@@ -533,36 +578,44 @@ class _CategoriesInfoState extends State<CategoriesInfo>
           Obx(
             () => offersController.isLoading.value
                 ? SizedBox(
-                  height: 250,
-                  child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 1,
-                              mainAxisExtent: 115, // l3ared
-                              mainAxisSpacing: 10),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: ((context, i) {
-                        return Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 191,
-                                width: 122,
-                                color: Colors.white,
-                              ),
-                              Container(
-                                height: 39,
-                                width: 122,
-                                color: const Color.fromARGB(255, 238, 235, 238),
-                              )
-                            ],
-                          ),
-                        );
-                      }),
-                      itemCount: 10),
-                )
+                    height: 250,
+                    child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 1,
+                                mainAxisExtent: 115, // l3ared
+                                mainAxisSpacing: 10),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: ((context, i) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Column(
+                              children: [
+                                Shimmer.fromColors(
+                                baseColor: Colors.white,
+                                highlightColor: const Color.fromRGBO(245, 241, 241, 1),
+                                  child: Container(
+                                    height: 191,
+                                    width: 122,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Shimmer.fromColors(
+                                  baseColor: const Color.fromARGB(255, 238, 235, 238),
+                                  highlightColor: Colors.white,
+                                  child: Container(
+                                    height: 39,
+                                    width: 122,
+                                    color:const Color.fromARGB(255, 238, 235, 238),
+                                  ),
+                                )
+                              ],
+                            ),
+                          );
+                        }),
+                        itemCount: 10),
+                  )
                 : SizedBox(
                     height: 350,
                     width: double.infinity,
@@ -719,36 +772,44 @@ class _CategoriesInfoState extends State<CategoriesInfo>
           Obx(
             () => offersController.isLoading.value
                 ? SizedBox(
-                  height: 250,
-                  child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 1,
-                              mainAxisExtent: 115, // l3ared
-                              mainAxisSpacing: 10),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: ((context, i) {
-                        return Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 191,
-                                width: 122,
-                                color: Colors.white,
-                              ),
-                              Container(
-                                height: 39,
-                                width: 122,
-                                color: const Color.fromARGB(255, 238, 235, 238),
-                              )
-                            ],
-                          ),
-                        );
-                      }),
-                      itemCount: 10),
-                )
+                    height: 250,
+                    child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 1,
+                                mainAxisExtent: 115, // l3ared
+                                mainAxisSpacing: 10),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: ((context, i) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Column(
+                              children: [
+                                Shimmer.fromColors(
+                                baseColor: Colors.white,
+                                highlightColor: const Color.fromRGBO(245, 241, 241, 1),
+                                  child: Container(
+                                    height: 191,
+                                    width: 122,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Shimmer.fromColors(
+                                  baseColor: const Color.fromARGB(255, 238, 235, 238),
+                                  highlightColor: Colors.white,
+                                  child: Container(
+                                    height: 39,
+                                    width: 122,
+                                    color:const Color.fromARGB(255, 238, 235, 238),
+                                  ),
+                                )
+                              ],
+                            ),
+                          );
+                        }),
+                        itemCount: 10),
+                  )
                 : SizedBox(
                     height: 350,
                     width: double.infinity,

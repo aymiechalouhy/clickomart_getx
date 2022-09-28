@@ -1,11 +1,12 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:testclickomart/widgets/itemswidget.dart';
 import 'package:testclickomart/controller/itemscontroller.dart';
 import 'package:testclickomart/controller/argumentscontroller.dart';
 import 'package:testclickomart/controller/categoriescontroller.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:testclickomart/widgets/itemswidget.dart';
 
 class CategoryDetails extends StatefulWidget {
   const CategoryDetails({super.key});
@@ -17,7 +18,6 @@ class CategoryDetails extends StatefulWidget {
 class _CategoryDetailsState extends State<CategoryDetails> {
   int selectedCategoryIndex = 0;
   int selectedSubcategories = 0;
-  final scrollHorizontally = ItemScrollController();
   final scrollMaincategories = ItemScrollController();
   ItemsController itemsController = Get.put(ItemsController());
   ArgumentController controller = Get.put(ArgumentController());
@@ -139,28 +139,27 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    // final isSelected = selectedSubcategories == index;
-                    return Column(
-                      children: [
+                    final isSelected = selectedSubcategories == index;
+                    return
                         MaterialButton(
                           onPressed: () {
                             debugPrint("Pressed");
-                            // setState(() {
-                            //   selectedSubcategories == index;
-                            // });
+                            setState(() {
+                              selectedSubcategories == index;
+                            });
                           },
                           child: Text(
-                            categoriesController.cat!
-                                .elementAt(selectedCategoryIndex)
-                                .subcategories!
-                                .elementAt(index)
-                                .name
-                                .toString(),
-                            style: const TextStyle(color: Colors.black),
-                          ),
-                        ),
-                      ],
-                    );
+                                categoriesController.cat!
+                                    .elementAt(selectedCategoryIndex)
+                                    .subcategories!
+                                    .elementAt(index)
+                                    .name
+                                    .toString(),
+                                style: TextStyle(
+                                    color: isSelected ? Colors.blue : Colors.black),
+                              ),
+                        );
+                      
                   },
                   itemCount: categoriesController.cat!
                       .elementAt(selectedCategoryIndex)
@@ -291,19 +290,41 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                                   top: 10),
                                               child: Column(
                                                 children: [
-                                                  Container(
-                                                      height: 155,
-                                                      width: 120,
-                                                      color: Colors.white),
-                                                  Container(
-                                                    height: 40,
-                                                    width: 120,
-                                                    color:  const Color.fromARGB(242, 238, 235, 238),
+                                                  Shimmer.fromColors(
+                                                    baseColor: Colors.white,
+                                                    highlightColor:
+                                                        Colors.white24,
+                                                    child: Container(
+                                                        height: 155,
+                                                        width: 120,
+                                                        color: Colors.white),
                                                   ),
-                                                  Container(
-                                                      height: 60,
+                                                  Shimmer.fromColors(
+                                                    baseColor:
+                                                        const Color.fromARGB(
+                                                            242, 238, 235, 238),
+                                                    highlightColor:
+                                                        Colors.white,
+                                                    child: Container(
+                                                      height: 40,
                                                       width: 120,
-                                                      color: Colors.white38)
+                                                      color:
+                                                          const Color.fromARGB(
+                                                              242,
+                                                              238,
+                                                              235,
+                                                              238),
+                                                    ),
+                                                  ),
+                                                  Shimmer.fromColors(
+                                                    baseColor: Colors.white38,
+                                                    highlightColor:
+                                                        Colors.white,
+                                                    child: Container(
+                                                        height: 60,
+                                                        width: 120,
+                                                        color: Colors.white38),
+                                                  )
                                                 ],
                                               ),
                                             )

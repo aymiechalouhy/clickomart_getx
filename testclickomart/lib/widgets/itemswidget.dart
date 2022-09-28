@@ -38,7 +38,7 @@ class CustomItems extends StatelessWidget {
                       icon: (const Icon(
                               Icons.favorite,
                               size: 25,
-                              color: Colors.blue,
+                              color:Color.fromARGB(129, 199, 186, 199),
                             )
                           ),
                       onPressed: () {

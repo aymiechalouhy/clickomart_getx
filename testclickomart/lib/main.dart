@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/home",
       getPages: [
         GetPage(name: "/home", page: (() => const HomePage())),
-        GetPage(name: "/categories", page: (() => const CategoriesInfo())),
+        GetPage(name: "/categories", page: (() => const Categories())),
         GetPage(name: "/categoryDetails", page: (() => const CategoryDetails())),
         GetPage(name: "/productDetails", page: (() => const ProductDetails())),
       ],

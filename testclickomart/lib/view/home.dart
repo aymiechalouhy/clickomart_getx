@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
               textColor: Colors.white,
                 child: const Text("Fetch Data"),
                 onPressed: () {
-                  Get.to(() => const CategoriesInfo());
+                  Get.to(() => const Categories());
                 })
           ],
         ),
