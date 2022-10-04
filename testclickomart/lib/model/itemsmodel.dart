@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class CategoryItems {
 	String? status;
 	Response? response;
@@ -23,10 +25,10 @@ class Response {
 	List<Items>? items;
 	int? total;
 	Facets? facets;
-	String? path;
+	// String? path;
 	List<dynamic>? subcategories;
 
-	Response({this.items, this.total, this.facets, this.path, this.subcategories});
+	Response({this.items, this.total, this.facets,this.subcategories});
 
 	Response.fromJson(Map<String, dynamic> json) {
 		if (json['items'] != null) {
@@ -35,7 +37,7 @@ class Response {
 		}
 		total = json['total'];
 		facets = json['facets'] != null ? Facets.fromJson(json['facets']) : null;
-		path = json['path'];
+		// path = json['path'];
 	}
 
 	Map<String, dynamic> toJson() {
@@ -47,7 +49,7 @@ class Response {
 		if (facets != null) {
       data['facets'] = facets!.toJson();
     }
-		data['path'] = path;
+		// data['path'] = path;
 		return data;
 	}
 }
@@ -390,7 +392,7 @@ class Facets {
 
 class Prices {
 	int? min;
-	double? max;
+	int? max;
 
 	Prices({this.min, this.max});
 

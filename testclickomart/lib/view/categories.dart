@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter/material.dart';
+import 'package:testclickomart/controller/relatedproductcontroller.dart';
 // import 'package:carousel_slider/carousel_slider.dart';
 import 'package:testclickomart/widgets/collections.dart';
 import 'package:testclickomart/view/productdetails.dart';
@@ -17,9 +18,11 @@ class Categories extends StatefulWidget {
   State<Categories> createState() => _CategoriesState();
 }
 
-class _CategoriesState extends State<Categories>{
- CategoriesController categoriesController = Get.put(CategoriesController());
+class _CategoriesState extends State<Categories> {
+  CategoriesController categoriesController = Get.put(CategoriesController());
   CollectionController offersController = Get.put(CollectionController());
+  RelatedProductController relatedProductController =
+      Get.put(RelatedProductController());
   AdsController adsController = Get.put(AdsController());
 
   @override
@@ -28,8 +31,8 @@ class _CategoriesState extends State<Categories>{
     categoriesController.getCategoriesFromApi();
     offersController.getOffersFromApi();
     adsController.getAdsFromApi();
+    relatedProductController.getRelatedProductFromApi();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -98,28 +101,27 @@ class _CategoriesState extends State<Categories>{
                         padding:
                             const EdgeInsets.only(top: 20, right: 20, left: 20),
                         child: Shimmer.fromColors(
-                            baseColor: const Color.fromARGB(255, 235, 240, 243),
-                            highlightColor:Colors.white,
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: 80,
-                                  width: 80,
+                          baseColor: const Color.fromARGB(255, 235, 240, 243),
+                          highlightColor: Colors.white,
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 80,
+                                width: 80,
+                                color: const Color.fromARGB(255, 235, 240, 243),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: Container(
+                                  height: 15,
+                                  width: 60,
                                   color:
                                       const Color.fromARGB(255, 235, 240, 243),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: Container(
-                                    height: 15,
-                                    width: 60,
-                                    color: const Color.fromARGB(
-                                        255, 235, 240, 243),
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
+                        ),
                       );
                     }),
                     itemCount: 12)
@@ -155,8 +157,7 @@ class _CategoriesState extends State<Categories>{
                           return InkWell(
                             onTap: (() =>
                                 Get.to(const CategoryDetails(), arguments: {
-                                  "id":
-                                      "${categoriesController.cat!.elementAt(i).sId}",
+                                  "id":"${categoriesController.cat!.elementAt(i).sId}",
                                 })),
                             child: Column(
                               children: [
@@ -214,8 +215,9 @@ class _CategoriesState extends State<Categories>{
                             child: Column(
                               children: [
                                 Shimmer.fromColors(
-                                baseColor: Colors.white,
-                                highlightColor: const Color.fromRGBO(245, 241, 241, 1),
+                                  baseColor: Colors.white,
+                                  highlightColor:
+                                      const Color.fromRGBO(245, 241, 241, 1),
                                   child: Container(
                                     height: 191,
                                     width: 122,
@@ -223,12 +225,14 @@ class _CategoriesState extends State<Categories>{
                                   ),
                                 ),
                                 Shimmer.fromColors(
-                                  baseColor: const Color.fromARGB(255, 238, 235, 238),
+                                  baseColor:
+                                      const Color.fromARGB(255, 238, 235, 238),
                                   highlightColor: Colors.white,
                                   child: Container(
                                     height: 39,
                                     width: 122,
-                                    color:const Color.fromARGB(255, 238, 235, 238),
+                                    color: const Color.fromARGB(
+                                        255, 238, 235, 238),
                                   ),
                                 )
                               ],
@@ -402,8 +406,9 @@ class _CategoriesState extends State<Categories>{
                             child: Column(
                               children: [
                                 Shimmer.fromColors(
-                                baseColor: Colors.white,
-                                highlightColor: const Color.fromRGBO(245, 241, 241, 1),
+                                  baseColor: Colors.white,
+                                  highlightColor:
+                                      const Color.fromRGBO(245, 241, 241, 1),
                                   child: Container(
                                     height: 191,
                                     width: 122,
@@ -411,12 +416,14 @@ class _CategoriesState extends State<Categories>{
                                   ),
                                 ),
                                 Shimmer.fromColors(
-                                  baseColor: const Color.fromARGB(255, 238, 235, 238),
+                                  baseColor:
+                                      const Color.fromARGB(255, 238, 235, 238),
                                   highlightColor: Colors.white,
                                   child: Container(
                                     height: 39,
                                     width: 122,
-                                    color:const Color.fromARGB(255, 238, 235, 238),
+                                    color: const Color.fromARGB(
+                                        255, 238, 235, 238),
                                   ),
                                 )
                               ],
@@ -593,8 +600,9 @@ class _CategoriesState extends State<Categories>{
                             child: Column(
                               children: [
                                 Shimmer.fromColors(
-                                baseColor: Colors.white,
-                                highlightColor: const Color.fromRGBO(245, 241, 241, 1),
+                                  baseColor: Colors.white,
+                                  highlightColor:
+                                      const Color.fromRGBO(245, 241, 241, 1),
                                   child: Container(
                                     height: 191,
                                     width: 122,
@@ -602,12 +610,14 @@ class _CategoriesState extends State<Categories>{
                                   ),
                                 ),
                                 Shimmer.fromColors(
-                                  baseColor: const Color.fromARGB(255, 238, 235, 238),
+                                  baseColor:
+                                      const Color.fromARGB(255, 238, 235, 238),
                                   highlightColor: Colors.white,
                                   child: Container(
                                     height: 39,
                                     width: 122,
-                                    color:const Color.fromARGB(255, 238, 235, 238),
+                                    color: const Color.fromARGB(
+                                        255, 238, 235, 238),
                                   ),
                                 )
                               ],
@@ -787,8 +797,9 @@ class _CategoriesState extends State<Categories>{
                             child: Column(
                               children: [
                                 Shimmer.fromColors(
-                                baseColor: Colors.white,
-                                highlightColor: const Color.fromRGBO(245, 241, 241, 1),
+                                  baseColor: Colors.white,
+                                  highlightColor:
+                                      const Color.fromRGBO(245, 241, 241, 1),
                                   child: Container(
                                     height: 191,
                                     width: 122,
@@ -796,12 +807,14 @@ class _CategoriesState extends State<Categories>{
                                   ),
                                 ),
                                 Shimmer.fromColors(
-                                  baseColor: const Color.fromARGB(255, 238, 235, 238),
+                                  baseColor:
+                                      const Color.fromARGB(255, 238, 235, 238),
                                   highlightColor: Colors.white,
                                   child: Container(
                                     height: 39,
                                     width: 122,
-                                    color:const Color.fromARGB(255, 238, 235, 238),
+                                    color: const Color.fromARGB(
+                                        255, 238, 235, 238),
                                   ),
                                 )
                               ],

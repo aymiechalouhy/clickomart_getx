@@ -33,7 +33,7 @@ class CustomCollection extends StatelessWidget {
                    children: const[
                       Padding(
                         padding: EdgeInsets.only(right: 0),
-                        child: Icon(Icons.favorite, color: Colors.blue,
+                        child: Icon(Icons.favorite, color: Color.fromARGB(255, 175, 172, 175),
                         size: 35),
                       ),
                    ],

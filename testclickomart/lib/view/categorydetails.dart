@@ -27,6 +27,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   void initState() {
     super.initState();
     categoriesController.getCategoriesFromApi();
+    debugPrint(controller.id);
     itemsController.getItemsFromApi(controller.id);
   }
 
@@ -140,26 +141,24 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     final isSelected = selectedSubcategories == index;
-                    return
-                        MaterialButton(
-                          onPressed: () {
-                            debugPrint("Pressed");
-                            setState(() {
-                              selectedSubcategories == index;
-                            });
-                          },
-                          child: Text(
-                                categoriesController.cat!
-                                    .elementAt(selectedCategoryIndex)
-                                    .subcategories!
-                                    .elementAt(index)
-                                    .name
-                                    .toString(),
-                                style: TextStyle(
-                                    color: isSelected ? Colors.blue : Colors.black),
-                              ),
-                        );
-                      
+                    return MaterialButton(
+                      onPressed: () {
+                        debugPrint("Pressed");
+                        setState(() {
+                          selectedSubcategories == index;
+                        });
+                      },
+                      child: Text(
+                        categoriesController.cat!
+                            .elementAt(selectedCategoryIndex)
+                            .subcategories!
+                            .elementAt(index)
+                            .name
+                            .toString(),
+                        style: TextStyle(
+                            color: isSelected ? Colors.blue : Colors.black),
+                      ),
+                    );
                   },
                   itemCount: categoriesController.cat!
                       .elementAt(selectedCategoryIndex)
