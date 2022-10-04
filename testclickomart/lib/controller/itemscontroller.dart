@@ -6,10 +6,10 @@ import 'package:http/http.dart' as http;
 import '../model/itemsmodel.dart' as items_model;
 
 class ItemsController extends GetxController {
-  Iterable<items_model.Items>? items;
-
   var isDataLoading = false.obs;
+  Iterable<items_model.Items>? items;
   //  Map<String, List<items_model.Items>> indexedItems = <String, List<items_model.Items>>{};
+ 
   getItemsFromApi(String? categoryId) async {
     List<String> categIds = List.empty(growable: true);
     if (categoryId != null && categoryId.isNotEmpty) categIds.add(categoryId);
@@ -21,7 +21,6 @@ class ItemsController extends GetxController {
       body["categoryIds"] = categIds;
     }
     try {
-      //true
       isDataLoading(true);
       http.Response response = await http.post(
         Uri.tryParse('https://be.clickomart.com/api/v1/items/get/')!,
@@ -37,9 +36,9 @@ class ItemsController extends GetxController {
         // indexedItems = items_model.CategoryItems.fromJson(result).response?.items as ;
       }
       
-      // final Map<String, dynamic> responseJson = json.decode(utf8.decode(response.bodyBytes));
-      // List itemsJson = responseJson["items"];
-      // Map<String, List> indexedItems = <String, List>{};
+      final Map<String, dynamic> responseJson = json.decode(utf8.decode(response.bodyBytes));
+      List itemsJson = responseJson["items"];
+      Map<String, List<items_model.Items>> indexedItems = <String, List<items_model.Items>>{};
       // for (var itemJson in itemsJson) {
       //   var oneItem = items_model.Items.fromJson(itemJson);
       //   for (String oneCat in oneItem.sId) {
