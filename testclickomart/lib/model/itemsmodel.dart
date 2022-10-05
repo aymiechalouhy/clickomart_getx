@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 class CategoryItems {
 	String? status;
 	Response? response;
@@ -10,7 +8,6 @@ class CategoryItems {
 		status = json['status'];
 		response = json['response'] != null ? Response.fromJson(json['response']) : null;
 	}
-
 	Map<String, dynamic> toJson() {
 		final Map<String, dynamic> data = <String, dynamic>{};
 		data['status'] = status;
@@ -57,99 +54,99 @@ class Response {
 class Items {
 	String? sId;
 	int? quantity;
-	int? variationsCount;
-	String? type;
-	dynamic variationReference;
+	// int? variationsCount;
+	// String? type;
+	// dynamic variationReference;
 	String? name;
 	int? price;
 	String? description;
 	String? summary;
 	dynamic details;
-	dynamic nutritionalFacts;
-	dynamic specialNote;
+	// dynamic nutritionalFacts;
+	// dynamic specialNote;
 	String? image;
-	String? rank;
-	int? order;
-	List<String>? gallery;
+	// String? rank;
+	// int? order;
+	// List<String>? gallery;
 	int? discount;
-	bool? hideFromWishlist;
-	dynamic hideFromSearch;
+	// bool? hideFromWishlist;
+	// dynamic hideFromSearch;
 	String? slug;
-	String? sku;
-	String? discountType;
-	dynamic isFavorite;
-	dynamic isInWishlist;
+	// String? sku;
+	// String? discountType;
+	// dynamic isFavorite;
+	// dynamic isInWishlist;
 	List<String>? categoryIds;
-	List<dynamic>? liveTranslations;
-	dynamic translationIds;
-	Currency? currency;
-	String? currencyId;
-	String? brandId;
-	Brand? brand;
-	dynamic productId;
-	List<dynamic>? tags;
-	dynamic tagIds;
-	List<dynamic>? variantTypes;
-	VariantValues? variantValues;
-	List<dynamic>? variantTypeIds;
-	VariantValues? variations;
-	String? createdAt;
-	dynamic isFeatured;
-	Meta? meta;
-	List<Categories>? categories;
-	int? availableQuantity;
+	// List<dynamic>? liveTranslations;
+	// dynamic translationIds;
+	// Currency? currency;
+	// String? currencyId;
+	// String? brandId;
+	// Brand? brand;
+	// dynamic productId;
+	// List<dynamic>? tags;
+	// dynamic tagIds;
+	// List<dynamic>? variantTypes;
+	// VariantValues? variantValues;
+	// List<dynamic>? variantTypeIds;
+	// VariantValues? variations;
+	// String? createdAt;
+	// dynamic isFeatured;
+	// Meta? meta;
+	// List<Categories>? categories;
+	// int? availableQuantity;
 	int? discountPrice;
 
-	Items({this.sId, this.quantity, this.variationsCount, this.type, this.variationReference, this.name, this.price, this.description, this.summary, this.details, this.nutritionalFacts, this.specialNote, this.image, this.rank, this.order, this.gallery, this.discount, this.hideFromWishlist, this.hideFromSearch, this.slug, this.sku, this.discountType, this.isFavorite, this.isInWishlist, this.categoryIds, this.liveTranslations, this.translationIds, this.currency, this.currencyId, this.brandId, this.brand, this.productId,this.tags, this.tagIds, this.variantTypes, this.variantValues, this.variantTypeIds, this.variations, this.createdAt, this.isFeatured, this.meta, this.categories, this.availableQuantity, this.discountPrice});
+	Items({this.sId, this.quantity, this.name, this.price, this.description, this.summary, this.details, this.image, this.discount, this.slug, this.categoryIds,this.discountPrice});
 
 	Items.fromJson(Map<String, dynamic> json) {
 		sId = json['_id'];
 		quantity = json['quantity'];
-		variationsCount = json['variationsCount'];
-		type = json['type'];
-		variationReference = json['variationReference'];
+		// variationsCount = json['variationsCount'];
+		// type = json['type'];
+		// variationReference = json['variationReference'];
 		name = json['name'];
 		price = json['price'];
 		description = json['description'];
 		summary = json['summary'];
 		details = json['details'];
-		nutritionalFacts = json['nutritionalFacts'];
-		specialNote = json['specialNote'];
+		// nutritionalFacts = json['nutritionalFacts'];
+		// specialNote = json['specialNote'];
 		image = json['image'];
-		rank = json['rank'];
-		order = json['order'];
-		gallery = json['gallery'].cast<String>();
+		// rank = json['rank'];
+		// order = json['order'];
+		// gallery = json['gallery'].cast<String>();
 		discount = json['discount'];
-		hideFromWishlist = json['hideFromWishlist'];
-		hideFromSearch = json['hideFromSearch'];
+		// hideFromWishlist = json['hideFromWishlist'];
+		// hideFromSearch = json['hideFromSearch'];
 		slug = json['slug'];
-		sku = json['sku'];
-		discountType = json['discountType'];
-		isFavorite = json['isFavorite'];
-		isInWishlist = json['isInWishlist'];
+		// sku = json['sku'];
+		// discountType = json['discountType'];
+		// isFavorite = json['isFavorite'];
+		// isInWishlist = json['isInWishlist'];
 		categoryIds = json['categoryIds'].cast<String>();
 		// if (json['liveTranslations'] != null) {
 		// 	liveTranslations = <Null>[];
 		// 	json['liveTranslations'].forEach((v) { liveTranslations!.add(Null.fromJson(v)); });
 		// }
-		translationIds = json['translationIds'];
-		currency = json['currency'] != null ? Currency.fromJson(json['currency']) : null;
-		currencyId = json['currencyId'];
-		brandId = json['brandId'];
-		brand = json['brand'] != null ? Brand.fromJson(json['brand']) : null;
-		productId = json['productId'];
-		brand = json['Brand'];
-		tagIds = json['tagIds'];
+		// translationIds = json['translationIds'];
+		// currency = json['currency'] != null ? Currency.fromJson(json['currency']) : null;
+		// currencyId = json['currencyId'];
+		// brandId = json['brandId'];
+		// brand = json['brand'] != null ? Brand.fromJson(json['brand']) : null;
+		// productId = json['productId'];
+		// brand = json['Brand'];
+		// tagIds = json['tagIds'];
 		// variantValues = json['variantValues'] != null ? VariantValues.fromJson(json['variantValues']) : null;
 		// variations = json['variations'] != null ? VariantValues.fromJson(json['variations']) : null;
-		createdAt = json['createdAt'];
-		isFeatured = json['isFeatured'];
-		meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
-		if (json['categories'] != null) {
-			categories = <Categories>[];
-			json['categories'].forEach((v) { categories!.add(Categories.fromJson(v)); });
-		}
-		availableQuantity = json['availableQuantity'];
+		// createdAt = json['createdAt'];
+		// isFeatured = json['isFeatured'];
+		// meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
+		// if (json['categories'] != null) {
+		// 	categories = <Categories>[];
+		// 	json['categories'].forEach((v) { categories!.add(Categories.fromJson(v)); });
+		// }
+		// availableQuantity = json['availableQuantity'];
 		discountPrice = json['discountPrice'];
 	}
 
@@ -157,56 +154,56 @@ class Items {
 		final Map<String, dynamic> data = <String, dynamic>{};
 		data['_id'] = sId;
 		data['quantity'] = quantity;
-		data['variationsCount'] = variationsCount;
-		data['type'] = type;
-		data['variationReference'] = variationReference;
+		// data['variationsCount'] = variationsCount;
+		// data['type'] = type;
+		// data['variationReference'] = variationReference;
 		data['name'] = name;
 		data['price'] = price;
 		data['description'] = description;
 		data['summary'] = summary;
 		data['details'] = details;
-		data['nutritionalFacts'] = nutritionalFacts;
-		data['specialNote'] = specialNote;
+		// data['nutritionalFacts'] = nutritionalFacts;
+		// data['specialNote'] = specialNote;
 		data['image'] = image;
-		data['rank'] = rank;
-		data['order'] = order;
-		data['gallery'] = gallery;
+		// data['rank'] = rank;
+		// data['order'] = order;
+		// data['gallery'] = gallery;
 		data['discount'] = discount;
-		data['hideFromWishlist'] = hideFromWishlist;
-		data['hideFromSearch'] = hideFromSearch;
+		// data['hideFromWishlist'] = hideFromWishlist;
+		// data['hideFromSearch'] = hideFromSearch;
 		data['slug'] = slug;
-		data['sku'] = sku;
-		data['discountType'] = discountType;
-		data['isFavorite'] = isFavorite;
-		data['isInWishlist'] = isInWishlist;
+		// data['sku'] = sku;
+		// data['discountType'] = discountType;
+		// data['isFavorite'] = isFavorite;
+		// data['isInWishlist'] = isInWishlist;
 		data['categoryIds'] = categoryIds;
-		data['translationIds'] = translationIds;
-		if (currency != null) {
-      data['currency'] = currency!.toJson();
-    }
-		data['currencyId'] = currencyId;
-		data['brandId'] = brandId;
-		if (brand != null) {
-      data['brand'] = brand!.toJson();
-    }
-		data['productId'] = productId;
-		data['Brand'] = brand;
-		data['tagIds'] = tagIds;
-		if (variantValues != null) {
-      data['variantValues'] = variantValues!.toJson();
-    }
-		if (variations != null) {
-      data['variations'] = variations!.toJson();
-    }
-		data['createdAt'] = createdAt;
-		data['isFeatured'] = isFeatured;
-		if (meta != null) {
-      data['meta'] = meta!.toJson();
-    }
-		if (categories != null) {
-      data['categories'] = categories!.map((v) => v.toJson()).toList();
-    }
-		data['availableQuantity'] = availableQuantity;
+		// data['translationIds'] = translationIds;
+		// if (currency != null) {
+    //   data['currency'] = currency!.toJson();
+    // }
+		// data['currencyId'] = currencyId;
+		// data['brandId'] = brandId;
+		// if (brand != null) {
+    //   data['brand'] = brand!.toJson();
+    // }
+		// data['productId'] = productId;
+		// data['Brand'] = brand;
+		// data['tagIds'] = tagIds;
+		// if (variantValues != null) {
+    //   data['variantValues'] = variantValues!.toJson();
+    // }
+		// if (variations != null) {
+    //   data['variations'] = variations!.toJson();
+    // }
+		// data['createdAt'] = createdAt;
+		// data['isFeatured'] = isFeatured;
+		// if (meta != null) {
+    //   data['meta'] = meta!.toJson();
+    // }
+		// if (categories != null) {
+    //   data['categories'] = categories!.map((v) => v.toJson()).toList();
+    // }
+		// data['availableQuantity'] = availableQuantity;
 		data['discountPrice'] = discountPrice;
 		return data;
 	}
@@ -431,93 +428,93 @@ class Attributes {
 class Items1 {
 	String? sId;
 	int? quantity;
-	int? variationsCount;
-	String? type;
-	dynamic variationReference;
+	// int? variationsCount;
+	// String? type;
+	// dynamic variationReference;
 	String? name;
 	int? price;
 	String? description;
 	String? summary;
 	dynamic details;
-	dynamic nutritionalFacts;
-	dynamic specialNote;
+	// dynamic nutritionalFacts;
+	// dynamic specialNote;
 	String? image;
-	String? rank;
-	int? order;
-	List<String>? gallery;
+	// String? rank;
+	// int? order;
+	// List<String>? gallery;
 	int? discount;
-	bool? hideFromWishlist;
-	dynamic hideFromSearch;
+	// bool? hideFromWishlist;
+	// dynamic hideFromSearch;
 	String? slug;
-	String? sku;
-	String? discountType;
-	dynamic isFavorite;
-	dynamic isInWishlist;
+	// String? sku;
+	// String? discountType;
+	// dynamic isFavorite;
+	// dynamic isInWishlist;
 	List<String>? categoryIds;
-	List<dynamic>? liveTranslations;
-	dynamic translationIds;
-	Currency? currency;
-	String? currencyId;
-	String? brandId;
-	Brand? brand;
-	dynamic productId;
-	List<dynamic>? tags;
-	dynamic tagIds;
-	List<dynamic>? variantTypes;
-	VariantValues? variantValues;
-	List<dynamic>? variantTypeIds;
-	VariantValues? variations;
-	String? createdAt;
-	dynamic isFeatured;
-	Meta? meta;
-	List<Categories>? categories;
-	int? availableQuantity;
+	// List<dynamic>? liveTranslations;
+	// dynamic translationIds;
+	// Currency? currency;
+	// String? currencyId;
+	// String? brandId;
+	// Brand? brand;
+	// dynamic productId;
+	// List<dynamic>? tags;
+	// dynamic tagIds;
+	// List<dynamic>? variantTypes;
+	// VariantValues? variantValues;
+	// List<dynamic>? variantTypeIds;
+	// VariantValues? variations;
+	// String? createdAt;
+	// dynamic isFeatured;
+	// Meta? meta;
+	// List<Categories>? categories;
+	// int? availableQuantity;
 	int? discountPrice;
 
-	Items1({this.sId, this.quantity, this.variationsCount, this.type, this.variationReference, this.name, this.price, this.description, this.summary, this.details, this.nutritionalFacts, this.specialNote, this.image, this.rank, this.order, this.gallery, this.discount, this.hideFromWishlist, this.hideFromSearch, this.slug, this.sku, this.discountType, this.isFavorite, this.isInWishlist, this.categoryIds, this.liveTranslations, this.translationIds, this.currency, this.currencyId, this.brandId, this.brand, this.productId,this.tags, this.tagIds, this.variantTypes, this.variantValues, this.variantTypeIds, this.variations, this.createdAt, this.isFeatured, this.meta, this.categories, this.availableQuantity, this.discountPrice});
+	Items1({this.sId, this.quantity, this.name, this.price, this.description, this.summary, this.details, this.image, this.discount,this.slug, this.categoryIds,this.discountPrice});
 
 	Items1.fromJson(Map<String, dynamic> json) {
 		sId = json['_id'];
 		quantity = json['quantity'];
-		variationsCount = json['variationsCount'];
-		type = json['type'];
-		variationReference = json['variationReference'];
+		// variationsCount = json['variationsCount'];
+		// type = json['type'];
+		// variationReference = json['variationReference'];
 		name = json['name'];
 		price = json['price'];
 		description = json['description'];
 		summary = json['summary'];
 		details = json['details'];
-		nutritionalFacts = json['nutritionalFacts'];
-		specialNote = json['specialNote'];
-		image = json['image'];
-		rank = json['rank'];
-		order = json['order'];
-		gallery = json['gallery'].cast<String>();
 		discount = json['discount'];
-		hideFromWishlist = json['hideFromWishlist'];
-		hideFromSearch = json['hideFromSearch'];
+		image = json['image'];
+		// nutritionalFacts = json['nutritionalFacts'];
+		// specialNote = json['specialNote'];
+		// rank = json['rank'];
+		// order = json['order'];
+		// gallery = json['gallery'].cast<String>();
+		// hideFromWishlist = json['hideFromWishlist'];
+		// hideFromSearch = json['hideFromSearch'];
+		// sku = json['sku'];
+		// discountType = json['discountType'];
+		// isFavorite = json['isFavorite'];
+		// isInWishlist = json['isInWishlist'];
 		slug = json['slug'];
-		sku = json['sku'];
-		discountType = json['discountType'];
-		isFavorite = json['isFavorite'];
-		isInWishlist = json['isInWishlist'];
 		categoryIds = json['categoryIds'].cast<String>();
 		// if (json['liveTranslations'] != null) {
 		// 	liveTranslations = <Null>[];
 		// 	json['liveTranslations'].forEach((v) { liveTranslations!.add(Null.fromJson(v)); });
 		// }
-		translationIds = json['translationIds'];
-		currency = json['currency'] != null ? Currency.fromJson(json['currency']) : null;
-		currencyId = json['currencyId'];
-		brandId = json['brandId'];
-		brand = json['brand'] != null ? Brand.fromJson(json['brand']) : null;
-		productId = json['productId'];
-		brand = json['Brand'];
+		// translationIds = json['translationIds'];
+		// currency = json['currency'] != null ? Currency.fromJson(json['currency']) : null;
+		// currencyId = json['currencyId'];
+		// brandId = json['brandId'];
+		// brand = json['brand'] != null ? Brand.fromJson(json['brand']) : null;
+		// productId = json['productId'];
+		// brand = json['Brand'];
 		// if (json['tags'] != null) {
 		// 	tags = <Null>[];
 		// 	json['tags'].forEach((v) { tags!.add(Null.fromJson(v)); });
 		// }
-		tagIds = json['tagIds'];
+		// tagIds = json['tagIds'];
 		// if (json['variantTypes'] != null) {
 		// 	variantTypes = <Null>[];
 		// 	json['variantTypes'].forEach((v) { variantTypes!.add(Null.fromJson(v)); });
@@ -528,14 +525,14 @@ class Items1 {
 		// 	json['variantTypeIds'].forEach((v) { variantTypeIds!.add(Null.fromJson(v)); });
 		// }
 		// variations = json['variations'] != null ? VariantValues.fromJson(json['variations']) : null;
-		createdAt = json['createdAt'];
-		isFeatured = json['isFeatured'];
-		meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
-		if (json['categories'] != null) {
-			categories = <Categories>[];
-			json['categories'].forEach((v) { categories!.add(Categories.fromJson(v)); });
-		}
-		availableQuantity = json['availableQuantity'];
+		// createdAt = json['createdAt'];
+		// isFeatured = json['isFeatured'];
+		// meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
+		// if (json['categories'] != null) {
+		// 	categories = <Categories>[];
+		// 	json['categories'].forEach((v) { categories!.add(Categories.fromJson(v)); });
+		// }
+		// availableQuantity = json['availableQuantity'];
 		discountPrice = json['discountPrice'];
 	}
 
@@ -543,68 +540,68 @@ class Items1 {
 		final Map<String, dynamic> data = <String, dynamic>{};
 		data['_id'] = sId;
 		data['quantity'] = quantity;
-		data['variationsCount'] = variationsCount;
-		data['type'] = type;
-		data['variationReference'] = variationReference;
+		// data['variationsCount'] = variationsCount;
+		// data['type'] = type;
+		// data['variationReference'] = variationReference;
 		data['name'] = name;
 		data['price'] = price;
 		data['description'] = description;
 		data['summary'] = summary;
-		data['details'] = details;
-		data['nutritionalFacts'] = nutritionalFacts;
-		data['specialNote'] = specialNote;
 		data['image'] = image;
-		data['rank'] = rank;
-		data['order'] = order;
-		data['gallery'] = gallery;
+		data['details'] = details;
 		data['discount'] = discount;
-		data['hideFromWishlist'] = hideFromWishlist;
-		data['hideFromSearch'] = hideFromSearch;
-		data['slug'] = slug;
-		data['sku'] = sku;
-		data['discountType'] = discountType;
-		data['isFavorite'] = isFavorite;
-		data['isInWishlist'] = isInWishlist;
+		// data['nutritionalFacts'] = nutritionalFacts;
+		// data['specialNote'] = specialNote;
+		// data['rank'] = rank;
+		// data['order'] = order;
+		// data['gallery'] = gallery;
+		// data['hideFromWishlist'] = hideFromWishlist;
+		// data['hideFromSearch'] = hideFromSearch;
+		// data['sku'] = sku;
+		// data['discountType'] = discountType;
+		// data['isFavorite'] = isFavorite;
+		// data['isInWishlist'] = isInWishlist;
 		data['categoryIds'] = categoryIds;
-		if (liveTranslations != null) {
-      data['liveTranslations'] = liveTranslations!.map((v) => v.toJson()).toList();
-    }
-		data['translationIds'] = translationIds;
-		if (currency != null) {
-      data['currency'] = currency!.toJson();
-    }
-		data['currencyId'] = currencyId;
-		data['brandId'] = brandId;
-		if (brand != null) {
-      data['brand'] = brand!.toJson();
-    }
-		data['productId'] = productId;
-		data['Brand'] = brand;
-		if (tags != null) {
-      data['tags'] = tags!.map((v) => v.toJson()).toList();
-    }
-		data['tagIds'] = tagIds;
-		if (variantTypes != null) {
-      data['variantTypes'] = variantTypes!.map((v) => v.toJson()).toList();
-    }
-		if (variantValues != null) {
-      data['variantValues'] = variantValues!.toJson();
-    }
-		if (variantTypeIds != null) {
-      data['variantTypeIds'] = variantTypeIds!.map((v) => v.toJson()).toList();
-    }
-		if (variations != null) {
-      data['variations'] = variations!.toJson();
-    }
-		data['createdAt'] = createdAt;
-		data['isFeatured'] = isFeatured;
-		if (meta != null) {
-      data['meta'] = meta!.toJson();
-    }
-		if (categories != null) {
-      data['categories'] = categories!.map((v) => v.toJson()).toList();
-    }
-		data['availableQuantity'] = availableQuantity;
+		data['slug'] = slug;
+		// if (liveTranslations != null) {
+    //   data['liveTranslations'] = liveTranslations!.map((v) => v.toJson()).toList();
+    // }
+		// data['translationIds'] = translationIds;
+		// if (currency != null) {
+    //   data['currency'] = currency!.toJson();
+    // }
+		// data['currencyId'] = currencyId;
+		// data['brandId'] = brandId;
+		// if (brand != null) {
+    //   data['brand'] = brand!.toJson();
+    // }
+		// data['productId'] = productId;
+		// data['Brand'] = brand;
+		// if (tags != null) {
+    //   data['tags'] = tags!.map((v) => v.toJson()).toList();
+    // }
+		// data['tagIds'] = tagIds;
+		// if (variantTypes != null) {
+    //   data['variantTypes'] = variantTypes!.map((v) => v.toJson()).toList();
+    // }
+		// if (variantValues != null) {
+    //   data['variantValues'] = variantValues!.toJson();
+    // }
+		// if (variantTypeIds != null) {
+    //   data['variantTypeIds'] = variantTypeIds!.map((v) => v.toJson()).toList();
+    // }
+		// if (variations != null) {
+    //   data['variations'] = variations!.toJson();
+    // }
+		// data['createdAt'] = createdAt;
+		// data['isFeatured'] = isFeatured;
+		// if (meta != null) {
+    //   data['meta'] = meta!.toJson();
+    // }
+		// if (categories != null) {
+    //   data['categories'] = categories!.map((v) => v.toJson()).toList();
+    // }
+		// data['availableQuantity'] = availableQuantity;
 		data['discountPrice'] = discountPrice;
 		return data;
 	}

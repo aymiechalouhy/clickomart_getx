@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter/material.dart';
-import 'package:testclickomart/controller/relatedproductcontroller.dart';
 // import 'package:carousel_slider/carousel_slider.dart';
 import 'package:testclickomart/widgets/collections.dart';
 import 'package:testclickomart/view/productdetails.dart';
@@ -9,6 +8,7 @@ import 'package:testclickomart/view/categorydetails.dart';
 import 'package:testclickomart/controller/adscontroller.dart';
 import 'package:testclickomart/controller/categoriescontroller.dart';
 import 'package:testclickomart/controller/collectionscontroller.dart';
+import 'package:testclickomart/controller/relatedproductcontroller.dart';
 // import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
 class Categories extends StatefulWidget {
@@ -20,7 +20,7 @@ class Categories extends StatefulWidget {
 
 class _CategoriesState extends State<Categories> {
   CategoriesController categoriesController = Get.put(CategoriesController());
-  CollectionController offersController = Get.put(CollectionController());
+  CollectionController collectionController = Get.put(CollectionController());
   RelatedProductController relatedProductController =
       Get.put(RelatedProductController());
   AdsController adsController = Get.put(AdsController());
@@ -29,7 +29,7 @@ class _CategoriesState extends State<Categories> {
   void initState() {
     super.initState();
     categoriesController.getCategoriesFromApi();
-    offersController.getOffersFromApi();
+    collectionController.getOffersFromApi();
     adsController.getAdsFromApi();
     relatedProductController.getRelatedProductFromApi();
   }
@@ -86,8 +86,8 @@ class _CategoriesState extends State<Categories> {
 
           // ),
           //end
-          Obx(
-            () => categoriesController.isDataLoading.value
+          Obx(() =>
+           categoriesController.isDataLoading.value
                 ? GridView.builder(
                     physics: const ScrollPhysics(),
                     shrinkWrap: true,
@@ -197,8 +197,9 @@ class _CategoriesState extends State<Categories> {
                       fontWeight: FontWeight.bold)),
             ),
           ),
-          Obx(
-            () => offersController.isLoading.value
+          
+          Obx(() =>
+           collectionController.isLoading.value
                 ? SizedBox(
                     height: 250,
                     child: GridView.builder(
@@ -272,7 +273,7 @@ class _CategoriesState extends State<Categories> {
                                       String price = '';
                                       String discountPrice = '';
                                       try {
-                                        name = offersController.products!
+                                        name = collectionController.products!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexNewProducts)
@@ -283,7 +284,7 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        discount = offersController.products!
+                                        discount = collectionController.products!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexNewProducts)
@@ -294,7 +295,7 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        image = offersController.products!
+                                        image = collectionController.products!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexNewProducts)
@@ -304,7 +305,7 @@ class _CategoriesState extends State<Categories> {
                                         image = '';
                                       }
                                       try {
-                                        description = offersController.products!
+                                        description = collectionController.products!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexNewProducts)
@@ -315,7 +316,7 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        price = offersController.products!
+                                        price = collectionController.products!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexNewProducts)
@@ -326,7 +327,7 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        discountPrice = offersController
+                                        discountPrice = collectionController
                                             .products!
                                             .elementAt(index)
                                             .items!
@@ -347,22 +348,22 @@ class _CategoriesState extends State<Categories> {
                                           Get.to(() => const ProductDetails(),
                                               arguments: {
                                                 "name":
-                                                    "${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).name}",
+                                                    "${collectionController.products!.elementAt(index).items!.elementAt(indexNewProducts).name}",
                                                 "image":
-                                                    "${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).image}",
+                                                    "${collectionController.products!.elementAt(index).items!.elementAt(indexNewProducts).image}",
                                                 "price":
-                                                    "${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).price}",
+                                                    "${collectionController.products!.elementAt(index).items!.elementAt(indexNewProducts).price}",
                                                 "description":
-                                                    "${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).description}",
+                                                    "${collectionController.products!.elementAt(index).items!.elementAt(indexNewProducts).description}",
                                                 "discount":
-                                                    "${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).discount}",
+                                                    "${collectionController.products!.elementAt(index).items!.elementAt(indexNewProducts).discount}",
                                                 "discountPrice":
-                                                    "${offersController.products!.elementAt(index).items!.elementAt(indexNewProducts).discountPrice}",
+                                                    "${collectionController.products!.elementAt(index).items!.elementAt(indexNewProducts).discountPrice}",
                                               });
                                         },
                                       );
                                     }),
-                                    itemCount: offersController.products
+                                    itemCount: collectionController.products
                                         ?.elementAt(index)
                                         .items
                                         ?.length),
@@ -371,7 +372,7 @@ class _CategoriesState extends State<Categories> {
                           ],
                         );
                       },
-                      itemCount: offersController.products?.length,
+                      itemCount: collectionController.products?.length,
                     ),
                   ),
           ),
@@ -388,8 +389,9 @@ class _CategoriesState extends State<Categories> {
                       fontWeight: FontWeight.bold)),
             ),
           ),
-          Obx(
-            () => offersController.isLoading.value
+        
+          Obx(() => 
+          collectionController.isLoading.value
                 ? SizedBox(
                     height: 250,
                     child: GridView.builder(
@@ -467,7 +469,7 @@ class _CategoriesState extends State<Categories> {
                                       String price = '';
                                       String discountPrice = '';
                                       try {
-                                        name = offersController.offers!
+                                        name = collectionController.offers!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexOffers)
@@ -478,7 +480,7 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        discount = offersController.offers!
+                                        discount = collectionController.offers!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexOffers)
@@ -489,7 +491,7 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        image = offersController.offers!
+                                        image = collectionController.offers!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexOffers)
@@ -499,7 +501,7 @@ class _CategoriesState extends State<Categories> {
                                         image = '';
                                       }
                                       try {
-                                        description = offersController.offers!
+                                        description = collectionController.offers!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexOffers)
@@ -510,7 +512,7 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        price = offersController.offers!
+                                        price = collectionController.offers!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexOffers)
@@ -521,7 +523,7 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        discountPrice = offersController.offers!
+                                        discountPrice = collectionController.offers!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexOffers)
@@ -541,22 +543,22 @@ class _CategoriesState extends State<Categories> {
                                           Get.to(() => const ProductDetails(),
                                               arguments: {
                                                 "name":
-                                                    "${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).name}",
+                                                    "${collectionController.offers!.elementAt(index).items!.elementAt(indexOffers).name}",
                                                 "image":
-                                                    "${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).image}",
+                                                    "${collectionController.offers!.elementAt(index).items!.elementAt(indexOffers).image}",
                                                 "price":
-                                                    "${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).price}",
+                                                    "${collectionController.offers!.elementAt(index).items!.elementAt(indexOffers).price}",
                                                 "description":
-                                                    "${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).description}",
+                                                    "${collectionController.offers!.elementAt(index).items!.elementAt(indexOffers).description}",
                                                 "discount":
-                                                    "${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).discount}",
+                                                    "${collectionController.offers!.elementAt(index).items!.elementAt(indexOffers).discount}",
                                                 "discountPrice":
-                                                    "${offersController.offers!.elementAt(index).items!.elementAt(indexOffers).discountPrice}",
+                                                    "${collectionController.offers!.elementAt(index).items!.elementAt(indexOffers).discountPrice}",
                                               });
                                         },
                                       );
                                     }),
-                                    itemCount: offersController.offers
+                                    itemCount: collectionController.offers
                                         ?.elementAt(index)
                                         .items
                                         ?.length),
@@ -565,7 +567,7 @@ class _CategoriesState extends State<Categories> {
                           ],
                         );
                       },
-                      itemCount: offersController.offers?.length,
+                      itemCount: collectionController.offers?.length,
                     ),
                   ),
           ),
@@ -582,8 +584,9 @@ class _CategoriesState extends State<Categories> {
                       fontWeight: FontWeight.bold)),
             ),
           ),
-          Obx(
-            () => offersController.isLoading.value
+         
+          Obx(() =>
+           collectionController.isLoading.value
                 ? SizedBox(
                     height: 250,
                     child: GridView.builder(
@@ -658,7 +661,7 @@ class _CategoriesState extends State<Categories> {
                                       String price = '';
                                       String discountPrice = '';
                                       try {
-                                        name = offersController
+                                        name = collectionController
                                             .featuredproducts!
                                             .elementAt(index)
                                             .items!
@@ -670,7 +673,7 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        discount = offersController
+                                        discount = collectionController
                                             .featuredproducts!
                                             .elementAt(index)
                                             .items!
@@ -682,7 +685,7 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        image = offersController
+                                        image = collectionController
                                             .featuredproducts!
                                             .elementAt(index)
                                             .items!
@@ -693,7 +696,7 @@ class _CategoriesState extends State<Categories> {
                                         image = '';
                                       }
                                       try {
-                                        description = offersController
+                                        description = collectionController
                                             .featuredproducts!
                                             .elementAt(index)
                                             .items!
@@ -705,7 +708,7 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        price = offersController
+                                        price = collectionController
                                             .featuredproducts!
                                             .elementAt(index)
                                             .items!
@@ -717,7 +720,7 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        discountPrice = offersController
+                                        discountPrice = collectionController
                                             .featuredproducts!
                                             .elementAt(index)
                                             .items!
@@ -738,22 +741,22 @@ class _CategoriesState extends State<Categories> {
                                           Get.to(() => const ProductDetails(),
                                               arguments: {
                                                 "name":
-                                                    "${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).name}",
+                                                    "${collectionController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).name}",
                                                 "image":
-                                                    "${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).image}",
+                                                    "${collectionController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).image}",
                                                 "price":
-                                                    "${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).price}",
+                                                    "${collectionController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).price}",
                                                 "description":
-                                                    "${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).description}",
+                                                    "${collectionController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).description}",
                                                 "discount":
-                                                    "${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).discount}",
+                                                    "${collectionController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).discount}",
                                                 "discountPrice":
-                                                    "${offersController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).discountPrice}",
+                                                    "${collectionController.featuredproducts!.elementAt(index).items!.elementAt(indexFeaturedProduct).discountPrice}",
                                               });
                                         },
                                       );
                                     }),
-                                    itemCount: offersController.featuredproducts
+                                    itemCount: collectionController.featuredproducts
                                         ?.elementAt(index)
                                         .items
                                         ?.length),
@@ -762,7 +765,7 @@ class _CategoriesState extends State<Categories> {
                           ],
                         );
                       },
-                      itemCount: offersController.featuredproducts?.length,
+                      itemCount: collectionController.featuredproducts?.length,
                     ),
                   ),
           ),
@@ -780,7 +783,7 @@ class _CategoriesState extends State<Categories> {
             ),
           ),
           Obx(
-            () => offersController.isLoading.value
+            () => collectionController.isLoading.value
                 ? SizedBox(
                     height: 250,
                     child: GridView.builder(
@@ -854,7 +857,7 @@ class _CategoriesState extends State<Categories> {
                                       String price = '';
                                       String discountPrice = '';
                                       try {
-                                        name = offersController.freshpicks!
+                                        name = collectionController.freshpicks!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexFreshPicks)
@@ -865,7 +868,7 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        discount = offersController.freshpicks!
+                                        discount = collectionController.freshpicks!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexFreshPicks)
@@ -876,7 +879,7 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        image = offersController.freshpicks!
+                                        image = collectionController.freshpicks!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexFreshPicks)
@@ -886,7 +889,7 @@ class _CategoriesState extends State<Categories> {
                                         image = '';
                                       }
                                       try {
-                                        description = offersController
+                                        description = collectionController
                                             .freshpicks!
                                             .elementAt(index)
                                             .items!
@@ -898,7 +901,7 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        price = offersController.freshpicks!
+                                        price = collectionController.freshpicks!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexFreshPicks)
@@ -909,7 +912,7 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        discountPrice = offersController
+                                        discountPrice = collectionController
                                             .freshpicks!
                                             .elementAt(index)
                                             .items!
@@ -930,22 +933,22 @@ class _CategoriesState extends State<Categories> {
                                           Get.to(() => const ProductDetails(),
                                               arguments: {
                                                 "name":
-                                                    "${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).name}",
+                                                    "${collectionController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).name}",
                                                 "image":
-                                                    "${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).image}",
+                                                    "${collectionController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).image}",
                                                 "price":
-                                                    "${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).price}",
+                                                    "${collectionController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).price}",
                                                 "description":
-                                                    "${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).description}",
+                                                    "${collectionController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).description}",
                                                 "discount":
-                                                    "${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).discount}",
+                                                    "${collectionController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).discount}",
                                                 "discountPrice":
-                                                    "${offersController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).discountPrice}",
+                                                    "${collectionController.freshpicks!.elementAt(index).items!.elementAt(indexFreshPicks).discountPrice}",
                                               });
                                         },
                                       );
                                     }),
-                                    itemCount: offersController.freshpicks
+                                    itemCount: collectionController.freshpicks
                                         ?.elementAt(index)
                                         .items
                                         ?.length),
@@ -954,7 +957,7 @@ class _CategoriesState extends State<Categories> {
                           ],
                         );
                       },
-                      itemCount: offersController.freshpicks?.length,
+                      itemCount: collectionController.freshpicks?.length,
                     ),
                   ),
           ),

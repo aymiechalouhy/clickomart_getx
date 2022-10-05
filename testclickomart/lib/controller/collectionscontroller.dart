@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-import 'package:testclickomart/model/collectionmodel.dart' as offers_model;
+import 'package:testclickomart/model/collectionmodel.dart' as collection_model;
 
 class CollectionController extends GetxController {
-  Iterable<offers_model.Response>? offers;
-  Iterable<offers_model.Response>? products;
-  Iterable<offers_model.Response>? featuredproducts;
-  Iterable<offers_model.Response>? freshpicks;
+  Iterable<collection_model.Response>? offers;
+  Iterable<collection_model.Response>? products;
+  Iterable<collection_model.Response>? featuredproducts;
+  Iterable<collection_model.Response>? freshpicks;
   //false
   var isLoading = false.obs;
 
@@ -25,22 +25,22 @@ class CollectionController extends GetxController {
         
         var result = json.decode(utf8.decode(response.bodyBytes));
 
-        offers = offers_model.Offers.fromJson(result)
+        offers = collection_model.Offers.fromJson(result)
             .response!
             .where((element) => element.slug == "weekly-offers")
             .toList();
 
-        products = offers_model.Offers.fromJson(result)
+        products = collection_model.Offers.fromJson(result)
             .response!
             .where((element) => element.slug == "new-products")
             .toList();
 
-        featuredproducts = offers_model.Offers.fromJson(result)
+        featuredproducts = collection_model.Offers.fromJson(result)
             .response!
             .where((element) => element.slug == "featured-products")
             .toList();
 
-        freshpicks = offers_model.Offers.fromJson(result)
+        freshpicks = collection_model.Offers.fromJson(result)
             .response!
             .where((element) => element.slug == "fresh-picks")
             .toList();
