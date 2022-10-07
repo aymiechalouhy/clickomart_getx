@@ -134,7 +134,6 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                     ),
                   )),
           // ),
-
           SizedBox(
             height: 60,
             child: ScrollablePositionedList.builder(
@@ -172,8 +171,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                     .trim(),
                                 style: TextStyle(
                                   fontSize: 14,
-                                    color:
-                                        isSelected ? Colors.white : Colors.black),
+                                    color: isSelected ? Colors.white : Colors.black),
                               ),
                             ),
                           ],
@@ -187,13 +185,12 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                     .subcategories!
                     .length),
           ),
-
           SizedBox(
             height: 450,
             child: ScrollablePositionedList.builder(
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  var subCategItems = itemsController.getItemsOfSubCategory(
+                  final subCategItems = itemsController.getItemsOfSubCategory(
                       categoriesController.cat!
                           .elementAt(selectedCategoryIndex)
                           .subcategories!
@@ -206,14 +203,9 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          categoriesController.cat!
-                              .elementAt(selectedCategoryIndex)
-                              .subcategories!
-                              .elementAt(index)
-                              .name
-                              .toString(),
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
+                          categoriesController.cat!.elementAt(selectedCategoryIndex)
+                              .subcategories!.elementAt(index).name.toString(),
+                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                         ),
                         Column(
                           children: [
@@ -285,7 +277,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                                       }
                                       return Column(
                                         children: [
-                                         Padding(padding:const EdgeInsets.only(top: 10),
+                                         Padding(
+                                          padding:const EdgeInsets.only(top: 10),
                                               child:
                                               CustomItems(
                                                     price: price,

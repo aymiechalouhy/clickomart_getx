@@ -9,6 +9,7 @@ import 'package:testclickomart/controller/adscontroller.dart';
 import 'package:testclickomart/controller/categoriescontroller.dart';
 import 'package:testclickomart/controller/collectionscontroller.dart';
 import 'package:testclickomart/controller/relatedproductcontroller.dart';
+import 'package:testclickomart/widgets/custom_appbar.dart';
 // import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
 class Categories extends StatefulWidget {
@@ -37,9 +38,45 @@ class _CategoriesState extends State<Categories> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Categories"),
-      ),
+      appBar:
+       AppBar(
+          toolbarHeight: 80,
+          flexibleSpace: const CustomPaint(
+            painter: MyCustomPainter(),
+            size: Size.infinite,
+          ),
+          title: Transform.translate(
+            offset: const Offset(0, 5),
+            child:Padding(
+              padding: const EdgeInsets.only(left:130),
+              child: Image.asset("assets/images/logo.png", height: 60, width: 60),
+            ),
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(top: 10, right: 10),
+              child: Row(
+                children: [
+                  RichText(
+                    text: const TextSpan(
+                      style: TextStyle(
+                        fontSize: 12.0,
+                        color: Colors.white,
+                      ),
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: 'Opening Hours \n',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        TextSpan(text: '8 AM - 9 PM'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ]),
       body: SingleChildScrollView(
         child: Column(children: [
           //start
@@ -86,8 +123,8 @@ class _CategoriesState extends State<Categories> {
 
           // ),
           //end
-          Obx(() =>
-           categoriesController.isDataLoading.value
+          Obx(
+            () => categoriesController.isDataLoading.value
                 ? GridView.builder(
                     physics: const ScrollPhysics(),
                     shrinkWrap: true,
@@ -157,7 +194,8 @@ class _CategoriesState extends State<Categories> {
                           return InkWell(
                             onTap: (() =>
                                 Get.to(const CategoryDetails(), arguments: {
-                                  "id":"${categoriesController.cat!.elementAt(i).sId}",
+                                  "id":
+                                      "${categoriesController.cat!.elementAt(i).sId}",
                                 })),
                             child: Column(
                               children: [
@@ -197,9 +235,9 @@ class _CategoriesState extends State<Categories> {
                       fontWeight: FontWeight.bold)),
             ),
           ),
-          
-          Obx(() =>
-           collectionController.isLoading.value
+
+          Obx(
+            () => collectionController.isLoading.value
                 ? SizedBox(
                     height: 250,
                     child: GridView.builder(
@@ -284,7 +322,8 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        discount = collectionController.products!
+                                        discount = collectionController
+                                            .products!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexNewProducts)
@@ -305,7 +344,8 @@ class _CategoriesState extends State<Categories> {
                                         image = '';
                                       }
                                       try {
-                                        description = collectionController.products!
+                                        description = collectionController
+                                            .products!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexNewProducts)
@@ -389,9 +429,9 @@ class _CategoriesState extends State<Categories> {
                       fontWeight: FontWeight.bold)),
             ),
           ),
-        
-          Obx(() => 
-          collectionController.isLoading.value
+
+          Obx(
+            () => collectionController.isLoading.value
                 ? SizedBox(
                     height: 250,
                     child: GridView.builder(
@@ -501,7 +541,8 @@ class _CategoriesState extends State<Categories> {
                                         image = '';
                                       }
                                       try {
-                                        description = collectionController.offers!
+                                        description = collectionController
+                                            .offers!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexOffers)
@@ -523,7 +564,8 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        discountPrice = collectionController.offers!
+                                        discountPrice = collectionController
+                                            .offers!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexOffers)
@@ -584,9 +626,9 @@ class _CategoriesState extends State<Categories> {
                       fontWeight: FontWeight.bold)),
             ),
           ),
-         
-          Obx(() =>
-           collectionController.isLoading.value
+
+          Obx(
+            () => collectionController.isLoading.value
                 ? SizedBox(
                     height: 250,
                     child: GridView.builder(
@@ -756,7 +798,8 @@ class _CategoriesState extends State<Categories> {
                                         },
                                       );
                                     }),
-                                    itemCount: collectionController.featuredproducts
+                                    itemCount: collectionController
+                                        .featuredproducts
                                         ?.elementAt(index)
                                         .items
                                         ?.length),
@@ -868,7 +911,8 @@ class _CategoriesState extends State<Categories> {
                                       }
 
                                       try {
-                                        discount = collectionController.freshpicks!
+                                        discount = collectionController
+                                            .freshpicks!
                                             .elementAt(index)
                                             .items!
                                             .elementAt(indexFreshPicks)

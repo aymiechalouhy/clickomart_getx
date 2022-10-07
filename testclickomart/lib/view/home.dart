@@ -16,14 +16,8 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            MaterialButton(
-              color: Colors.blue,
-              textColor: Colors.white,
-                child: const Text("Fetch Data"),
-                onPressed: () {
-                  Get.to(() => const Categories());
-                })
+          children: const [
+           Text("Hello World", style: TextStyle(fontSize: 50, color: Colors.blue),)
           ],
         ),
       ),

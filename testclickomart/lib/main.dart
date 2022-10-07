@@ -1,11 +1,17 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:testclickomart/view/btm.dart';
 import 'package:testclickomart/view/categories.dart';
 import 'package:testclickomart/view/categorydetails.dart';
+import 'package:testclickomart/view/favorite.dart';
 import 'package:testclickomart/view/home.dart';
 import 'package:testclickomart/view/productdetails.dart';
+import 'package:testclickomart/view/profile.dart';
+import 'package:testclickomart/view/search.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarColor: Colors.blue,));
   runApp(const MyApp());
 }
 
@@ -20,12 +26,16 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: "/home",
+      initialRoute: "/",
       getPages: [
+        GetPage(name: "/", page: (() => const BTM())),
         GetPage(name: "/home", page: (() => const HomePage())),
         GetPage(name: "/categories", page: (() => const Categories())),
         GetPage(name: "/categoryDetails", page: (() => const CategoryDetails())),
         GetPage(name: "/productDetails", page: (() => const ProductDetails())),
+        GetPage(name: "/favorite", page: (() => const FavPage())),
+        GetPage(name: "/search", page: (() => const SearchPage())),
+        GetPage(name: "/profile", page: (() => const Profile())),
       ],
     );
   }
