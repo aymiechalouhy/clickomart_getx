@@ -22,8 +22,7 @@ class CustomCollection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
+    return Column(      children: [
         Padding(
           padding: const EdgeInsets.only(top: 10),
           child: Container(
@@ -38,8 +37,7 @@ class CustomCollection extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 3),
                         child: Text(
-                          '-'
-                          '$discount LBP',
+                          '-$discount',
                           style: const TextStyle(
                               color: Colors.black, fontSize: 9.5),
                         ),
@@ -87,7 +85,7 @@ class CustomCollection extends StatelessWidget {
               foregroundColor: Colors.blue,
               backgroundColor: const Color.fromARGB(255, 238, 235, 238),
             ),
-            onPressed: (){},
+            onPressed: () {},
             child: const Text('ADD TO CART'),
           ),
         ),

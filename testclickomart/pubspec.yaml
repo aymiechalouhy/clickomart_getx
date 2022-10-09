@@ -74,6 +74,7 @@ flutter:
   assets:
     - assets/images/load.png
     - assets/images/logo.png
+    - assets/images/ssp.png
 
     - assets/images/ss.svg  
     - assets/images/ff.svg    

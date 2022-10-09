@@ -8,6 +8,7 @@ class ArgumentController extends GetxController {
   String? discountPrice;
   String? description;
   String? price;
+  String? categoryname;
 
   @override
   void onInit() {
@@ -18,6 +19,7 @@ class ArgumentController extends GetxController {
     discountPrice = Get.arguments['discountPrice'];
     description = Get.arguments['description'];
     price = Get.arguments['price'];
+    categoryname = Get.arguments['category_name'];
     super.onInit();
   }
 }

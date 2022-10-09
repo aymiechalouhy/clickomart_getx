@@ -29,29 +29,31 @@ class CustomCollection extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                 Row( mainAxisAlignment: MainAxisAlignment.end,
-                   children: const[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: const [
                       Padding(
                         padding: EdgeInsets.only(right: 0),
-                        child: Icon(Icons.favorite, color: Color.fromARGB(255, 175, 172, 175),
-                        size: 35),
+                        child: Icon(Icons.favorite,
+                            color: Color.fromARGB(255, 175, 172, 175),
+                            size: 35),
                       ),
-                   ],
-                 ),
-                 Row(
-                   children: [
-                     Flexible(
-                       child: Text(
-                            name,
-                            style: const TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            maxLines: 3,
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Flexible(
+                        child: Text(
+                          name,
+                          style: const TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
                           ),
-                     ),
-                   ],
-                 ),         
+                          maxLines: 3,
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -76,7 +78,6 @@ class CustomCollection extends StatelessWidget {
             fontSize: 15,
           ),
         )),
-
         Padding(
           padding: const EdgeInsets.only(top: 20),
           child: SizedBox(
@@ -98,13 +99,13 @@ class CustomCollection extends StatelessWidget {
             ),
           ),
         ),
-         TextButton(
-              onPressed: () {},
-              child: const Text(
-                'Done',
-                style: TextStyle(fontSize: 18, color: Colors.blue),
-              ),
-            ),
+        TextButton(
+          onPressed: () {},
+          child: const Text(
+            'Done',
+            style: TextStyle(fontSize: 18, color: Colors.blue),
+          ),
+        ),
       ],
     );
   }

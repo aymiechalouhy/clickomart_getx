@@ -2,13 +2,14 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:testclickomart/view/btm.dart';
-import 'package:testclickomart/view/categories.dart';
-import 'package:testclickomart/view/categorydetails.dart';
-import 'package:testclickomart/view/favorite.dart';
+import 'package:testclickomart/view/cart.dart';
 import 'package:testclickomart/view/home.dart';
-import 'package:testclickomart/view/productdetails.dart';
-import 'package:testclickomart/view/profile.dart';
 import 'package:testclickomart/view/search.dart';
+import 'package:testclickomart/view/profile.dart';
+import 'package:testclickomart/view/favorite.dart';
+import 'package:testclickomart/view/categories.dart';
+import 'package:testclickomart/view/productdetails.dart';
+import 'package:testclickomart/view/categorydetails.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarColor: Colors.blue,));
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/favorite", page: (() => const FavPage())),
         GetPage(name: "/search", page: (() => const SearchPage())),
         GetPage(name: "/profile", page: (() => const Profile())),
+        GetPage(name: "/cart", page: (() => const Cart())),
       ],
     );
   }

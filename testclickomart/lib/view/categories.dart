@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:testclickomart/widgets/collections.dart';
 import 'package:testclickomart/view/productdetails.dart';
 import 'package:testclickomart/view/categorydetails.dart';
+import 'package:testclickomart/widgets/custom_appbar.dart';
 import 'package:testclickomart/controller/adscontroller.dart';
 import 'package:testclickomart/controller/categoriescontroller.dart';
 import 'package:testclickomart/controller/collectionscontroller.dart';
 import 'package:testclickomart/controller/relatedproductcontroller.dart';
-import 'package:testclickomart/widgets/custom_appbar.dart';
 // import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
 class Categories extends StatefulWidget {
@@ -38,8 +38,7 @@ class _CategoriesState extends State<Categories> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-       AppBar(
+      appBar: AppBar(
           toolbarHeight: 80,
           flexibleSpace: const CustomPaint(
             painter: MyCustomPainter(),
@@ -47,9 +46,10 @@ class _CategoriesState extends State<Categories> {
           ),
           title: Transform.translate(
             offset: const Offset(0, 5),
-            child:Padding(
-              padding: const EdgeInsets.only(left:130),
-              child: Image.asset("assets/images/logo.png", height: 60, width: 60),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 130),
+              child:
+                  Image.asset("assets/images/logo.png", height: 60, width: 60),
             ),
           ),
           backgroundColor: Colors.transparent,
@@ -293,8 +293,7 @@ class _CategoriesState extends State<Categories> {
                               height: 350,
                               width: double.infinity,
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 10, right: 10),
+                                padding:const EdgeInsets.only(left: 10, right: 10),
                                 child: GridView.builder(
                                     gridDelegate:
                                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -365,7 +364,6 @@ class _CategoriesState extends State<Categories> {
                                       } catch (e) {
                                         price = '';
                                       }
-
                                       try {
                                         discountPrice = collectionController
                                             .products!
@@ -377,6 +375,7 @@ class _CategoriesState extends State<Categories> {
                                       } catch (e) {
                                         discountPrice = '';
                                       }
+
                                       return CustomCollection(
                                         price: price,
                                         description: description,
@@ -386,6 +385,10 @@ class _CategoriesState extends State<Categories> {
                                         name: name,
                                         onClicked: () {
                                           Get.to(() => const ProductDetails(),
+                                              duration:
+                                                  const Duration(seconds: 1),
+                                              transition:
+                                                  Transition.circularReveal,
                                               arguments: {
                                                 "name":
                                                     "${collectionController.products!.elementAt(index).items!.elementAt(indexNewProducts).name}",
@@ -395,10 +398,6 @@ class _CategoriesState extends State<Categories> {
                                                     "${collectionController.products!.elementAt(index).items!.elementAt(indexNewProducts).price}",
                                                 "description":
                                                     "${collectionController.products!.elementAt(index).items!.elementAt(indexNewProducts).description}",
-                                                "discount":
-                                                    "${collectionController.products!.elementAt(index).items!.elementAt(indexNewProducts).discount}",
-                                                "discountPrice":
-                                                    "${collectionController.products!.elementAt(index).items!.elementAt(indexNewProducts).discountPrice}",
                                               });
                                         },
                                       );
@@ -481,10 +480,6 @@ class _CategoriesState extends State<Categories> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
-                        // debugPrint(offersController.offers
-                        //     ?.elementAt(index)
-                        //     .name
-                        //     .toString());
                         return Column(
                           children: [
                             SizedBox(
@@ -574,6 +569,7 @@ class _CategoriesState extends State<Categories> {
                                       } catch (e) {
                                         discountPrice = '';
                                       }
+
                                       return CustomCollection(
                                         price: price,
                                         description: description,
@@ -772,6 +768,7 @@ class _CategoriesState extends State<Categories> {
                                       } catch (e) {
                                         discountPrice = '';
                                       }
+
                                       return CustomCollection(
                                         price: price,
                                         description: description,
@@ -966,6 +963,7 @@ class _CategoriesState extends State<Categories> {
                                       } catch (e) {
                                         discountPrice = '';
                                       }
+
                                       return CustomCollection(
                                         price: price,
                                         description: description,

@@ -18,7 +18,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     ArgumentController controller = Get.put(ArgumentController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Product Details"),
+        title:const Text("hiiiiii"),
       ),
       body: SingleChildScrollView(
         child: Column(
